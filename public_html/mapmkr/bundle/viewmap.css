@@ -1,0 +1,46 @@
+@charset "utf-8";
+
+/*
+ * viewmap: v.1.0.0
+ * encoding: UTF-8 & LF
+ */
+
+#noscript_warn {
+	color: red;
+}
+
+#viewmap_area {
+	height: 100%;
+	width: 98%;
+	margin: 0 auto;
+}
+
+#viewmap_caption {
+	font-weight: bold;
+	margin: 2px 0;
+	width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* NOTE: #map は gsimaps で使用されているため使わないこと */
+#map_view {
+	height: 90%;
+	width: 100%;
+	border: 1px solid black;
+}
+
+#load_error_message {
+	color: #ff0000;
+}
+
+.leaflet-container {
+	background: #ffffff;
+}
+
+.leaflet-div-icon {
+	background: none;
+	white-space: nowrap;
+	border: none;
+}

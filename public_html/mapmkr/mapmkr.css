@@ -1,0 +1,1112 @@
+@charset "utf-8";
+
+/***********************************************************************
+ * gsimaps
+ ***********************************************************************/
+
+/*
+ * based on
+ *
+ * gsimaps.css: commit 020f5e47265b4c8b508b37ffd8acc025b308083e
+ *
+ * html5doctor.com Reset Stylesheet
+ * v1.6.1
+ * Last Updated: 2010-09-17
+ * Author: Richard Clark - http://richclarkdesign.com
+ * Twitter: @rich_clark
+*/
+
+.gsi-div-icon {
+    /*line-height: 1;*/
+
+    font-family: "Lucida Grande", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", Meiryo, メイリオ, sans-serif;
+    font-size: 9.5pt;
+    color: #000;
+    /*background: none;*/
+    white-space: nowrap;
+    /*border: none;*/
+}
+
+.gsi-div-icon strong {
+    font-weight: normal;
+    color: #dd4827;
+}
+
+.gsi-div-icon div, .gsi-div-icon span, .gsi-div-icon object, .gsi-div-icon iframe,
+.gsi-div-icon h1, .gsi-div-icon h2, .gsi-div-icon h3, .gsi-div-icon h4, .gsi-div-icon h5, .gsi-div-icon h6, .gsi-div-icon p, .gsi-div-icon blockquote, .gsi-div-icon pre,
+.gsi-div-icon abbr, .gsi-div-icon address, .gsi-div-icon cite, .gsi-div-icon code,
+.gsi-div-icon del, .gsi-div-icon dfn, .gsi-div-icon em, .gsi-div-icon img, .gsi-div-icon ins, .gsi-div-icon kbd, .gsi-div-icon q, .gsi-div-icon samp,
+.gsi-div-icon small, .gsi-div-icon strong, .gsi-div-icon sub, .gsi-div-icon sup, .gsi-div-icon var,
+.gsi-div-icon b, .gsi-div-icon i,
+.gsi-div-icon dl, .gsi-div-icon dt, .gsi-div-icon dd, .gsi-div-icon ol, .gsi-div-icon ul, .gsi-div-icon li,
+.gsi-div-icon fieldset, .gsi-div-icon form, .gsi-div-icon label, .gsi-div-icon legend,
+.gsi-div-icon table, .gsi-div-icon caption, .gsi-div-icon tbody, .gsi-div-icon tfoot, .gsi-div-icon thead, .gsi-div-icon tr, .gsi-div-icon th, .gsi-div-icon td,
+.gsi-div-icon article, .gsi-div-icon aside, .gsi-div-icon canvas, .gsi-div-icon details, .gsi-div-icon figcaption, .gsi-div-icon figure,
+.gsi-div-icon footer, .gsi-div-icon header, .gsi-div-icon hgroup, .gsi-div-icon menu, .gsi-div-icon nav, .gsi-div-icon section, .gsi-div-icon summary,
+.gsi-div-icon time, .gsi-div-icon mark, .gsi-div-icon audio, .gsi-div-icon video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+
+    font-size: 10.5pt;
+}
+
+.gsi-div-icon article, .gsi-div-icon aside, .gsi-div-icon details, .gsi-div-icon figcaption, .gsi-div-icon figure,
+.gsi-div-icon footer, .gsi-div-icon header, .gsi-div-icon hgroup, .gsi-div-icon menu, .gsi-div-icon nav, .gsi-div-icon section {
+    display: block;
+
+    font-size: 10.5pt;
+}
+
+.gsi-div-icon nav ul {
+    list-style: none;
+
+    font-size: 10.5pt;
+}
+
+.gsi-div-icon blockquote, .gsi-div-icon q {
+    quotes: none;
+
+    font-size: 10.5pt;
+}
+
+.gsi-div-icon blockquote:before, .gsi-div-icon blockquote:after,
+.gsi-div-icon q:before, .gsi-div-icon q:after {
+    content: '';
+    content: none;
+
+    font-size: 10.5pt;
+}
+
+.gsi-div-icon a {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+
+    font-size: 10.5pt;
+}
+
+/* change colours to suit your needs */
+.gsi-div-icon ins {
+    background-color: #ff9;
+    color: #000;
+    text-decoration: none;
+
+    font-size: 10.5pt;
+}
+
+/* change colours to suit your needs */
+.gsi-div-icon mark {
+    background-color: #ff9;
+    color: #000;
+    font-style: italic;
+    font-weight: bold;
+
+    font-size: 10.5pt;
+}
+
+.gsi-div-icon del {
+    text-decoration: line-through;
+
+    font-size: 10.5pt;
+}
+
+.gsi-div-icon abbr[title], .gsi-div-icon dfn[title] {
+    border-bottom: 1px dotted;
+    cursor: help;
+
+    font-size: 10.5pt;
+}
+
+.gsi-div-icon table {
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    font-size: 10.5pt;
+}
+
+/* change border colour to suit your needs */
+.gsi-div-icon hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #cccccc;
+    margin: 1em 0;
+    padding: 0;
+
+    font-size: 10.5pt;
+}
+
+.gsi-div-icon input, .gsi-div-icon select {
+    vertical-align: middle;
+
+    font-size: 10.5pt;
+}
+
+/* 値未設定時 */
+
+.gsi-div-icon .mkr_notext {
+	color: #fe93c2;
+	color: rgba(254, 87, 161, 0.6);
+	font-weight: bold;
+}
+
+/***********************************************************************
+ * Bootstrap
+ ***********************************************************************/
+
+/* ボタンをクリックしたときの見た目をリンクと同じにする */
+
+.btn:focus, .btn.focus, .btn:active:focus, .btn:active.focus, .btn.active:focus, .btn.active.focus {
+	outline: 0;
+	outline-offset: 0;
+}
+
+/* well 内の背景を白に */
+
+.well {
+	background-color: #ffffff;
+}
+
+/* ラベルは常に左寄せし、縦中央、折り返さない */
+.form-horizontal .control-label {
+	padding-top: 7px;
+	margin-bottom: 0;
+	text-align: left;
+
+	white-space: nowrap;
+}
+
+/***********************************************************************
+ * Trumbowyg
+ ***********************************************************************/
+
+/*---------------------------------------------------------------------*
+ * 画像の挿入ダイアログ
+ *---------------------------------------------------------------------*/
+
+.mkr_trumbowyg_insert_image_dialog .form-group {
+	margin-bottom: 5px;
+}
+
+.mkr_trumbowyg_insert_image_dialog .mkr_img_file_name_description {
+	margin-top: 4px;
+	font-size: 12px;
+	color: red;
+}
+
+.mkr_trumbowyg_insert_image_dialog .mkr_img_file_name_separator {
+	margin-top: 0;
+	margin-bottom: 8px;
+}
+
+.mkr_trumbowyg_insert_image_dialog .mkr_url {
+	height: 150px;
+}
+
+.mkr_trumbowyg_insert_image_dialog .mkr_dialog_footer {
+	margin-top: 15px;
+}
+
+/*---------------------------------------------------------------------*
+ * リンクの作成ダイアログ
+ *---------------------------------------------------------------------*/
+
+.mkr_trumbowyg_create_link_dialog .form-group {
+	margin-bottom: 5px;
+}
+
+.mkr_trumbowyg_create_link_dialog .mkr_url {
+	height: 150px;
+}
+
+.mkr_trumbowyg_create_link_dialog .mkr_dialog_footer {
+	margin-top: 15px;
+}
+
+/*---------------------------------------------------------------------*
+ * その他
+ *---------------------------------------------------------------------*/
+
+.trumbowyg-editor img {
+	vertical-align: baseline;
+}
+
+.trumbowyg-editor.trumbowyg-reset-css {
+	font-family: "Lucida Grande", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", Meiryo, メイリオ, sans-serif !important;
+	line-height: 1.4 !important;
+	font-size: 10.5pt !important;
+	color: #000;
+	word-break: break-all;
+}
+
+.trumbowyg-editor.trumbowyg-reset-css div,
+.trumbowyg-editor.trumbowyg-reset-css p,
+.trumbowyg-editor.trumbowyg-reset-css ul,
+.trumbowyg-editor.trumbowyg-reset-css ol,
+.trumbowyg-editor.trumbowyg-reset-css blockquote {
+	font-family: "Lucida Grande", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", Meiryo, メイリオ, sans-serif !important;
+}
+
+.trumbowyg-editor.trumbowyg-reset-css p {
+	margin: 18px 0 !important;
+}
+
+.trumbowyg-editor.trumbowyg-reset-css h1,
+.trumbowyg-editor.trumbowyg-reset-css h2,
+.trumbowyg-editor.trumbowyg-reset-css h3,
+.trumbowyg-editor.trumbowyg-reset-css h4,
+.trumbowyg-editor.trumbowyg-reset-css h5,
+.trumbowyg-editor.trumbowyg-reset-css h6 {
+	font-family: "Lucida Grande", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", Meiryo, メイリオ, sans-serif;
+	font-weight: bold !important;
+	font-size: 10.5pt !important;
+	line-height: 1.4 !important;
+}
+
+.trumbowyg-editor.trumbowyg-reset-css h1 {
+	margin-top: 9.38px !important;
+	margin-bottom: 9.38px !important;
+}
+
+.trumbowyg-editor.trumbowyg-reset-css h2 {
+	margin-top: 11.62px !important;
+	margin-bottom: 11.62px !important;
+}
+
+.trumbowyg-editor.trumbowyg-reset-css h3 {
+	margin-top: 14px !important;
+	margin-bottom: 14px !important;
+}
+
+.trumbowyg-editor.trumbowyg-reset-css h4 {
+	margin-top: 18.62px !important;
+	margin-bottom: 18.62px !important;
+}
+
+.trumbowyg-editor.trumbowyg-reset-css h5 {
+	margin-top: 23.38px !important;
+	margin-bottom: 23.38px !important;
+}
+
+.trumbowyg-editor.trumbowyg-reset-css h6 {
+	margin-top: 32.62px !important;
+	margin-bottom: 32.62px !important;
+}
+
+.trumbowyg-editor.trumbowyg-reset-css hr {
+	margin-top: 7px;
+	margin-bottom: 7px;
+	border-style: inset;
+	border-width: 1px;
+}
+
+/***********************************************************************
+ * Leaflet
+ ***********************************************************************/
+
+.leaflet-popup-content-wrapper {
+	box-sizing: content-box;
+	font-family: "Lucida Grande", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", Meiryo, メイリオ, sans-serif;
+	font-size: 10.5pt;
+	color: #000;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+	box-sizing: content-box;
+}
+
+.leaflet-popup-content h1,
+.leaflet-popup-content h2,
+.leaflet-popup-content h3,
+.leaflet-popup-content h4,
+.leaflet-popup-content h5,
+.leaflet-popup-content h6 {
+	font-family: "Lucida Grande", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", Meiryo, メイリオ, sans-serif;
+	font-weight: bold;
+	font-size: 10.5pt;
+	line-height: 1.4;
+}
+
+.leaflet-popup-content h1 {
+	margin-top: 9.38px;
+	margin-bottom: 9.38px;
+}
+
+.leaflet-popup-content h2 {
+	margin-top: 11.62px;
+	margin-bottom: 11.62px;
+}
+
+.leaflet-popup-content h3 {
+	margin-top: 14px;
+	margin-bottom: 14px;
+}
+
+.leaflet-popup-content h4 {
+	margin-top: 18.62px;
+	margin-bottom: 18.62px;
+}
+
+.leaflet-popup-content h5 {
+	margin-top: 23.38px;
+	margin-bottom: 23.38px;
+}
+
+.leaflet-popup-content h6 {
+	margin-top: 32.62px;
+	margin-bottom: 32.62px;
+}
+
+.leaflet-popup-content hr {
+	margin-top: 7px;
+	margin-bottom: 7px;
+	border-style: inset;
+	border-width: 1px;
+}
+
+.leaflet-popup-content table {
+	border-collapse: separate;
+	border-spacing: 2px;
+}
+
+.leaflet-popup-content table td {
+	padding: 1px;
+}
+
+.leaflet-popup-content img {
+	vertical-align: baseline;
+}
+
+/***********************************************************************
+ * Leaflet.draw
+ ***********************************************************************/
+
+.leaflet-draw-tooltip {
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, "Arial", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
+}
+
+/* 編集・設定・削除時のマーカーの強調処理 */
+.leaflet-edit-marker-selected {
+	background: rgba(119, 119, 119, 0.2);
+	border: 4px dashed rgba(119, 119, 119, 0.9);
+	-webkit-border-radius: 4px;
+	        border-radius: 4px;
+	box-sizing: content-box;
+}
+
+/***********************************************************************
+ * Leaflet.contextmenu
+ ***********************************************************************/
+
+/* Bootstrap のドロップダウンメニュー風にする */
+
+.leaflet-contextmenu {
+	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	padding: 5px 0;
+	border: 1px solid #ccc;
+	border: 1px solid rgba(0, 0, 0, .15);
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+}
+
+.leaflet-contextmenu a.leaflet-contextmenu-item {
+	color: #333;
+	font-size: 16px;
+	padding: 5px 20px;
+	border-top: 0px solid transparent;
+	border-bottom: 0px solid transparent;
+	cursor: pointer;
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, "Arial", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
+}
+
+.leaflet-contextmenu a.leaflet-contextmenu-item.over {
+	background-color: #f5f5f5;
+	border-top: 0px solid transparent;
+	border-bottom: 0px solid transparent;
+}
+
+.leaflet-contextmenu a.leaflet-contextmenu-item-disabled.over {
+	background-color: inherit;
+	border-top: 0px solid transparent;
+	border-bottom: 0px solid transparent;
+}
+
+.leaflet-contextmenu-separator {
+	border-bottom: 0px solid transparent;
+	margin: 11px 0;
+	height: 1px;
+	overflow: hidden;
+	background-color: #e5e5e5;
+}
+
+/* 文字によるアイコン部 */
+.leaflet-contextmenu a.leaflet-contextmenu-item i.fa {
+	margin-right: 8px;
+}
+
+/***********************************************************************
+ * 全体
+ ***********************************************************************/
+
+html, body {
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+}
+
+html, body, #map {
+	width: 100%;
+	height: 100%;
+	background-color: #ffffff;
+}
+
+textarea {
+	resize: none;
+	word-break: break-all;
+}
+
+.mkr_noscript_warn {
+	color: red;
+}
+
+/***********************************************************************
+ * 機能
+ ***********************************************************************/
+
+/* テーブル */
+
+.tableish {
+	display: table;
+}
+
+.tableish > .tr {
+	display: table-row;
+}
+
+.tableish > .td,
+.tableish > .tr > .td {
+	display: table-cell;
+}
+
+/* 必須マーク */
+.mkr_required:after {
+	margin-left: 0.5em;
+	color: #ff0000;
+	font-weight: bold;
+	content: "*";
+	margin-right: 0.5em;
+}
+
+/* スクロール */
+.mkr_scrollable_menu {
+	height: auto;
+	overflow-x: hidden;
+}
+
+/***********************************************************************
+ * ダイアログ
+ ***********************************************************************/
+
+.mkr_dialog {
+	position: absolute;
+
+	display: none;
+	overflow: visible;
+	-webkit-overflow-scrolling: touch;
+	outline: 0;
+
+	background-color: #fff;
+	-webkit-background-clip: padding-box;
+	        background-clip: padding-box;
+	border: 1px solid #999;
+	border: 1px solid rgba(0, 0, 0, .2);
+	border-radius: 4px;
+	-webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+	        box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+
+	width: auto;
+}
+
+/* ヘッダ */
+
+.mkr_dialog .mkr_dialog_header {
+	padding: 0px 10px 2px 10px;
+	border-bottom: 1px solid transparent;
+	cursor: move;
+	background-color: #eeeeee;
+}
+
+.mkr_dialog.active .mkr_dialog_header {
+	color: #fff;
+	background-color: #2196f3;
+}
+
+.mkr_dialog .mkr_dialog_title {
+	margin: 0;
+	line-height: 1.5;
+	font-size: 12px;
+}
+
+/* ボディ */
+
+.mkr_dialog .mkr_dialog_body {
+	position: relative;
+	padding: 15px;
+}
+
+/* フッタ */
+
+.mkr_dialog .mkr_dialog_footer {
+	padding: 0;
+	text-align: right;
+	border-top: 1px solid transparent;
+}
+.mkr_dialog .mkr_dialog_footer:before, .mkr_dialog .mkr_dialog_footer:after {
+	display: table;
+	content: " ";
+}
+.mkr_dialog .mkr_dialog_footer:after {
+	clear: both;
+}
+.mkr_dialog .mkr_dialog_footer .btn + .btn {
+	margin-bottom: 0;
+	margin-left: 5px;
+}
+.mkr_dialog .mkr_dialog_footer .btn-group .btn + .btn {
+	margin-left: -1px;
+}
+.mkr_dialog .mkr_dialog_footer .btn-block + .btn-block {
+	margin-left: 0;
+}
+
+/* モーダル用の背景 */
+.mkr_modal_backdrop {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: #000;
+
+	filter: alpha(opacity=10);
+	opacity: .1;
+}
+
+/***********************************************************************
+ * 名称・内容ペイン
+ ***********************************************************************/
+
+.mkr_dialog .mkr_switch_figure_info_type_pane {
+	height: 24px;
+	margin-bottom: 6px;
+}
+
+.mkr_dialog .mkr_switch_figure_info_type,
+.mkr_dialog .mkr_open_info_text_editor {
+	font-size: 14px;
+	text-decoration: underline;
+}
+
+.mkr_dialog .mkr_figure_info_data {
+	width: 100%;
+}
+
+.mkr_dialog .mkr_figure_info_data .mkr_figure_info_table_pane {
+	width: 100%;
+}
+
+.mkr_dialog .mkr_figure_info_data .mkr_figure_info_table_warn {
+	font-size: 12px;
+	margin-bottom: 2px;
+}
+
+.mkr_dialog .mkr_figure_info_data .mkr_figure_info_table_warn i {
+	margin-right: 0.5em;
+}
+
+.mkr_dialog .mkr_figure_info_data .mkr_figure_info_table {
+	width: 100%;
+}
+
+.mkr_dialog .mkr_figure_info_data .mkr_figure_info_table .mkr_figure_info_key_column {
+	width: 35%;
+}
+
+.mkr_dialog .mkr_figure_info_data .mkr_figure_info_text  {
+	width: 100%;
+	height: 100%;
+}
+
+.mkr_dialog .mkr_figure_info_table .mkr_figure_info_add_row {
+	padding: 5px 6px;
+}
+
+/***********************************************************************
+ * Bootstrap Colorpicker
+ *---------------------------------------------------------------------*
+ * NOTE: カラーピッカーのエレメントは body 直下に配置されるため、
+ *       ダイアログ系のウィンドウよりも z-index を大きくする必要がある。
+ ***********************************************************************/
+
+.mkr_dialog_colorpicker {
+	z-index: 40000;
+}
+
+.mkr_dialog_colorpicker .colorpicker-hue {
+	width: 30px;
+}
+
+.mkr_dialog_colorpicker .colorpicker-alpha {
+	display: none;
+	width: 0;
+}
+
+/***********************************************************************
+ * 各種ダイアログ
+ ***********************************************************************/
+
+/*---------------------------------------------------------------------*
+ * 作図ダイアログ
+ *---------------------------------------------------------------------*/
+
+.mkr_construction_dialog .mkr_dialog_body {
+	padding-top: 5px;
+}
+
+/* 作図処理、レイヤ表示・非表示のボタンエリア */
+
+.mkr_construction_dialog button i {
+	font-size: 14px;
+}
+
+.mkr_construction_dialog button,
+.mkr_construction_dialog .btn-group button {
+	padding-top: 6px;
+	padding-bottom: 4px;
+}
+
+.mkr_construction_dialog .mkr_figure_operation {
+	height: 30px;
+	margin-bottom: 2px;
+}
+
+.mkr_construction_dialog .mkr_figure_create {
+	display: inline-block;
+	margin-right: 8px;
+}
+
+.mkr_construction_dialog .mkr_scrollable_menu {
+	max-height: 240px;
+	min-width: 160px;
+	max-width: 260px;
+}
+
+.mkr_construction_dialog .dropdown-menu .mkr_figure_default {
+	font-weight: bold;
+}
+
+.mkr_construction_dialog .dropdown-menu img.mkr_figure_option_icon {
+	padding-top: 0px;
+	padding-bottom: 4px;
+	height: 20px;
+	margin-right: 8px;
+}
+
+.mkr_construction_dialog .dropdown-menu span.mkr_figure_option_icon {
+	display: inline-block;
+	width: 16px;
+	margin-bottom: 4px;
+	vertical-align: middle;
+	margin-right: 8px;
+}
+
+.mkr_construction_dialog .mkr_figure_create .btn-group-sm .btn {
+	padding: 2px 3px;
+}
+
+.mkr_construction_dialog .mkr_figure_create .btn-group-sm .mkr_selector {
+	padding: 5px 6px;
+	margin-right: 2px;
+}
+
+.mkr_construction_dialog .mkr_setting_figure i,
+.mkr_construction_dialog .mkr_setting_figure_list i,
+.mkr_construction_dialog .mkr_draw_repeat i {
+	margin-right: 8px;
+}
+
+.mkr_construction_dialog .mkr_figure_edit {
+	display: inline-block;
+	margin-right: 8px;
+}
+
+/* レイヤ操作部表示・非表示ボタンエリア */
+.mkr_construction_dialog .mkr_layer_visible_operation {
+	display: inline-block;
+	margin-right: 8px;
+}
+
+/* ファイル操作ボタンエリア */
+
+.mkr_construction_dialog .mkr_file_operation {
+	display: inline-block;
+	margin-right: 8px;
+}
+
+.mkr_construction_dialog .mkr_file_operation .btn-group-sm .mkr_selector {
+	padding: 5px 6px;
+	margin-right: 2px;
+}
+
+.mkr_construction_dialog .mkr_file_operation .mkr_scrollable_menu i {
+	margin-right: 8px;
+}
+
+/* 拡張機能ボタンエリア */
+.mkr_construction_dialog .mkr_extend_operation {
+	display: inline-block;
+}
+
+/* 作図および編集のための操作ボタンエリア */
+
+.mkr_construction_dialog .mkr_figure_motion {
+	height: 30px;
+	margin-bottom: 2px;
+}
+
+.mkr_construction_dialog .mkr_figure_motion button {
+	margin-right: 2px;
+}
+
+.mkr_construction_dialog .mkr_construct_pane, .mkr_construction_dialog .mkr_edit_pane {
+	display: none;
+}
+
+/* レイヤとのセパレータ */
+.mkr_construction_dialog .mkr_layers_separator {
+	margin-top: 0;
+	margin-bottom: 2px;
+}
+
+/* レイヤ操作部ボタンエリア */
+.mkr_construction_dialog .mkr_layer_operation {
+	margin-bottom: 2px;
+}
+
+/* レイヤ操作部 */
+
+.mkr_construction_dialog .mkr_layer_list {
+	font-size: 14px;
+	overflow-y: scroll;
+}
+
+.mkr_construction_dialog .mkr_layer_list .list-group-item {
+	padding: 7px 10px;
+}
+
+.mkr_construction_dialog .mkr_layer_list .list-group-item .caption,
+.mkr_construction_dialog .mkr_layer_list .list-group-item .mkr_layer_name_pane {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.mkr_construction_dialog .mkr_layer_list .list-group-item .mkr_layer_name_pane {
+	padding-left: 46px;
+	margin-top: 0px;
+	margin-bottom: 2px;
+}
+
+.mkr_construction_dialog .mkr_layer_list .list-group-item .mkr_layer_name {
+	font-size: 12px;
+}
+
+.mkr_construction_dialog .mkr_layer_list .list-group-item .mkr_layer_display_name_pane .mkr_toggle_layer_visible_pane {
+	background-color: #fff;
+	display: inline-block;
+	margin-right: 12px;
+	border-radius: 2px;
+}
+
+.mkr_construction_dialog .mkr_layer_list .mkr_layer_edit {
+	display: inline-block;
+	margin-right: 8px;
+	background-color: #fff;
+	border-radius: 2px;
+}
+
+.mkr_construction_dialog .mkr_layer_list .mkr_layer_count_pane {
+	display: inline-block;
+}
+
+.mkr_construction_dialog .mkr_layer_list .list-group-item.active .badge {
+  color: #2196f3;
+  background-color: #fff;
+}
+
+/*---------------------------------------------------------------------*
+ * レイヤ保存ダイアログ
+ *---------------------------------------------------------------------*/
+
+.mkr_save_layer_dialog .form-group {
+	margin-bottom: 5px;
+}
+
+.mkr_save_layer_dialog .mkr_description {
+	font-size: 12px;
+}
+
+.mkr_save_layer_dialog .checkbox input[type="checkbox"].mkr_include_publish_files {
+	margin-top: 7px;
+}
+
+.mkr_save_layer_dialog .checkbox .mkr_include_publish_files_caption {
+	font-size: 14px;
+}
+
+/*---------------------------------------------------------------------*
+ * 公開に必要な情報の設定ダイアログ
+ *---------------------------------------------------------------------*/
+
+.mkr_publish_info .form-group {
+	margin-bottom: 5px;
+}
+
+.mkr_publish_info .mkr_map_tiles_pane {
+	margin-bottom: 15px;
+}
+
+.mkr_publish_info .checkbox input[type="checkbox"].mkr_map_tile {
+	margin-top: 7px;
+}
+
+.mkr_publish_info .checkbox .mkr_map_tile_caption {
+	font-size: 14px;
+}
+
+.mkr_publish_info .mkr_dialog_footer {
+	margin-top: 15px;
+}
+
+/*---------------------------------------------------------------------*
+ * レイヤ読み込みダイアログ
+ *---------------------------------------------------------------------*/
+
+.mkr_load_layer_dialog .mkr_description {
+	font-size: 12px;
+}
+
+.mkr_load_layer_dialog .file-caption-name {
+	height: 24px;
+}
+
+.mkr_load_layer_dialog .checkbox input[type="checkbox"].mkr_remove_exists_layer {
+	margin-top: 7px;
+}
+
+.mkr_load_layer_dialog .checkbox .mkr_remove_exists_layer_caption {
+	font-size: 14px;
+}
+
+/*---------------------------------------------------------------------*
+ * はい・いいえダイアログ
+ *---------------------------------------------------------------------*/
+
+.mkr_yes_no_dialog .mkr_message {
+	display: block;
+	white-space: normal;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+
+/*---------------------------------------------------------------------*
+ * 警告ダイアログ
+ *---------------------------------------------------------------------*/
+
+.mkr_alert_dialog .mkr_message {
+	padding-bottom: 12px;
+
+	display: block;
+	white-space: normal;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+
+.mkr_alert_dialog .mkr_sub_message {
+	padding-top: 4px;
+	font-size: 12px;
+}
+
+/*---------------------------------------------------------------------*
+ * 作図設定の管理ダイアログ
+ *---------------------------------------------------------------------*/
+
+.mkr_figure_settings_maintenance_dialog .list-group {
+	overflow-y: scroll;
+}
+
+.mkr_figure_settings_maintenance_dialog .list-group-item .caption {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+	margin-bottom: 8px;
+}
+
+.mkr_figure_settings_maintenance_dialog .list-group-item .caption img.mkr_figure_option_icon {
+	padding-top: 0px;
+	padding-bottom: 4px;
+	height: 20px;
+	margin-right: 8px;
+}
+
+.mkr_figure_settings_maintenance_dialog .list-group-item .caption span.mkr_figure_option_icon {
+	display: inline-block;
+	width: 16px;
+	margin-bottom: 4px;
+	vertical-align: middle;
+	margin-right: 8px;
+}
+
+/*---------------------------------------------------------------------*
+ * マーカー(アイコン)の作図設定ダイアログ
+ *---------------------------------------------------------------------*/
+
+.mkr_marker_settings_dialog .form-group {
+	margin-bottom: 5px;
+}
+
+.mkr_marker_settings_dialog .mkr_marker_icon_column {
+	cursor: auto;
+	padding: 4px 10px 8px 10px;
+	border: 1px solid #ccc;
+}
+
+.mkr_marker_settings_dialog .mkr_marker_icon {
+	height: 20px;
+}
+
+.mkr_marker_settings_dialog .mkr_scrollable_menu {
+	max-height: 200px;
+	width: 260px;
+	padding: 4px 4px;
+}
+
+.mkr_marker_settings_dialog .mkr_marker_icon_selector {
+	padding: 0px 3px 0px 3px;
+}
+
+.mkr_marker_settings_dialog .mkr_marker_icon_selector img {
+	margin: 5px 0px;
+	border: 6px solid transparent;
+	height: 32px;
+}
+
+.mkr_marker_settings_dialog .mkr_marker_icon_selector img:hover {
+	border: 6px solid #ccc;
+}
+
+/*---------------------------------------------------------------------*
+ * 線の作図設定ダイアログ
+ *---------------------------------------------------------------------*/
+
+.mkr_polyline_settings_dialog .form-group {
+	margin-bottom: 5px;
+}
+
+.mkr_polyline_settings_dialog .mkr_polyline_opacity_pane {
+	padding-top: 13px;
+	padding-bottom: 0px;
+}
+
+/*---------------------------------------------------------------------*
+ * ポリゴンの作図設定ダイアログ
+ *---------------------------------------------------------------------*/
+
+.mkr_polygon_settings_dialog .form-group {
+	margin-bottom: 5px;
+}
+
+.mkr_polygon_settings_dialog .mkr_polyline_opacity_pane {
+	padding-top: 13px;
+	padding-bottom: 0px;
+}
+
+.mkr_polygon_settings_dialog .mkr_polyfill_opacity_pane {
+	padding-top: 13px;
+	padding-bottom: 0px;
+}
+
+/*---------------------------------------------------------------------*
+ * 円の作図設定ダイアログ
+ *---------------------------------------------------------------------*/
+
+.mkr_circle_settings_dialog .form-group {
+	margin-bottom: 5px;
+}
+
+.mkr_circle_settings_dialog .mkr_polyline_opacity_pane {
+	padding-top: 13px;
+	padding-bottom: 0px;
+}
+
+.mkr_circle_settings_dialog .mkr_polyfill_opacity_pane {
+	padding-top: 13px;
+	padding-bottom: 0px;
+}
+
+/*---------------------------------------------------------------------*
+ * マーカー(円)の作図設定ダイアログ
+ *---------------------------------------------------------------------*/
+
+.mkr_circle_marker_settings_dialog .form-group {
+	margin-bottom: 5px;
+}
+
+.mkr_circle_marker_settings_dialog .mkr_polyline_opacity_pane {
+	padding-top: 13px;
+	padding-bottom: 0px;
+}
+
+.mkr_circle_marker_settings_dialog .mkr_polyfill_opacity_pane {
+	padding-top: 13px;
+	padding-bottom: 0px;
+}
+
+/*---------------------------------------------------------------------*
+ * マーカー(テキスト)の作図設定ダイアログ
+ *---------------------------------------------------------------------*/
+
+.mkr_div_icon_marker_settings_dialog .form-group {
+	margin-bottom: 5px;
+}
+
+.mkr_div_icon_marker_settings_dialog .mkr_html {
+	width: 100%;
+	height: 80px;
+}
+
+/*---------------------------------------------------------------------*
+ * 自由文入力ダイアログ
+ *---------------------------------------------------------------------*/
+
+.mkr_info_text_editor_dialog .mkr_dialog_body {
+	padding-top: 5px;
+}
+
+.mkr_info_text_editor_dialog .mkr_description {
+	margin-top: -10px;
+	font-size: 12px;
+}
+
+
