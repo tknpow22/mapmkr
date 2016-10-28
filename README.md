@@ -1,7 +1,7 @@
 # mapmkr「お絵かきマップ」（基本機能）
 「お絵かきマップ」は、<a href="http://maps.gsi.go.jp/">地理院地図</a>を利用した、マップ用の図形データを作成するための Web サービスです。
 
-## 動作環境
+## 
 開発は Google Chrome で行いました。Internet Explorer、Microsoft Edge、Mozilla Firefox、Opera でも簡単な確認はしています。
 正しく動作させるには、必ずブラウザの最新バージョンをお使いください。
 
