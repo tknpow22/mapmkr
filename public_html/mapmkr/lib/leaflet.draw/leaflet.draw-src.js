@@ -31,6 +31,18 @@
  * L.Edit.PolyVerticesEdit#_removeMarker で touchmove の off() するハンドラが
  * _onMarkerDrag になっているのを _onTouchMove に直した。
  *
+ * @modified.v=4:
+ *----------------------------------------------------------------------
+ * NOTE: touch: L.Draw.Polyline#_onMouseUp でも _currentLatLng を設定する。
+ * NOTE: touch: L.Draw.Polyline でポイントを置いていく処理を、
+ *       "click" から "touchstart" へ変更する。
+ * NOTE: touch: 円の移動・変更時、マップが動かないように preventDefault() を呼び出す。
+ * NOTE: touch: 線・ポリゴンの移動・変更時、マップが動かないように preventDefault() を呼び出す。
+ * NOTE: touch: マーカー(アイコン)が他の図形の上に描画できないのを修正するため、
+ *              L.Draw.Marker で touchstart イベントをハンドリングする。
+ * NOTE: touch: マーカー(アイコン)を移動できるようにするため、
+ *              L.Edit.Marker で touchmove イベントをハンドリングする。
+ *
  */
 (function (window, document, undefined) {/*
  * Leaflet.draw assumes that you have already included the Leaflet library.
@@ -321,6 +333,7 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 				.on('mousemove', this._onMouseMove, this)
 				.on('zoomlevelschange', this._onZoomEnd, this)
 				.on('click', this._onTouch, this)
+				.on('touchstart', this._onTouchStart, this)
 				.on('zoomend', this._onZoomEnd, this);
 		}
 	},
@@ -356,6 +369,7 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 			.off('mousemove', this._onMouseMove, this)
 			.off('zoomlevelschange', this._onZoomEnd, this)
 			.off('zoomend', this._onZoomEnd, this)
+			.off('touchstart', this._onTouchStart, this)
 			.off('click', this._onTouch, this);
 	},
 
@@ -481,6 +495,7 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 			var distance = L.point(e.originalEvent.clientX, e.originalEvent.clientY)
 				.distanceTo(this._mouseDownOrigin);
 			if (Math.abs(distance) < 9 * (window.devicePixelRatio || 1)) {
+				this._currentLatLng = e.latlng;
 				this.addVertex(e.latlng);
 			}
 		}
@@ -488,10 +503,36 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 	},
 
 	_onTouch: function (e) {
+		// NOTE: touch: touchstart で行う
 		// #TODO: use touchstart and touchend vs using click(touch start & end).
-		if (L.Browser.touch) { // #TODO: get rid of this once leaflet fixes their click/touch.
-			this._onMouseDown(e);
-			this._onMouseUp(e);
+		//if (L.Browser.touch) { // #TODO: get rid of this once leaflet fixes their click/touch.
+		//	this._onMouseDown(e);
+		//	this._onMouseUp(e);
+		//}
+	},
+
+	_onTouchStart: function (e) {
+		// NOTE: IE などでタッチデバイスがなくても、イベントが生成される場合があるため、
+		//       L.Browser.touch を参照してガードすること。
+		if (L.Browser.touch) {
+
+			var srcElement = e.originalEvent.srcElement;
+
+			if (srcElement.className && typeof srcElement.className === "string" && 0 <= srcElement.className.indexOf('leaflet-editing-icon')) {
+				// NOTE: マーカークリック(最終点の指定)を判定するための苦肉の策。もっと良い方法はないものか。。。
+				return;
+			}
+
+			var dummyMouseEvent = {
+				latlng: e.latlng,
+				originalEvent: {
+					clientX: e.originalEvent.touches[0].clientX,
+					clientY: e.originalEvent.touches[0].clientY
+				}
+			};
+
+			this._onMouseDown(dummyMouseEvent);
+			this._onMouseUp(dummyMouseEvent);
 		}
 	},
 
@@ -503,6 +544,7 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 
 	_updateFinishHandler: function () {
 		var markerCount = this._markers.length;
+
 		// The last marker should have a click handler to close the polyline
 		if (markerCount > 1) {
 			this._markers[markerCount - 1].on('click', this._finishShape, this);
@@ -1085,6 +1127,7 @@ L.Draw.Marker = L.Draw.Feature.extend({
 
 			this._map.on('mousemove', this._onMouseMove, this);
 			this._map.on('click', this._onTouch, this);
+			this._map.on('touchstart', this._onTouch, this);
 		}
 	},
 
@@ -1108,6 +1151,7 @@ L.Draw.Marker = L.Draw.Feature.extend({
 			delete this._mouseMarker;
 
 			this._map.off('mousemove', this._onMouseMove, this);
+			this._map.off('touchstart', this._onTouch, this);
 		}
 	},
 
@@ -1169,6 +1213,8 @@ L.Edit.Marker = L.Handler.extend({
 
 		marker.dragging.enable();
 		marker.on('dragend', this._onDragEnd, marker);
+		marker.on('touchmove', this._onTouchMove, this);
+
 		this._toggleMarkerHighlight();
 	},
 
@@ -1177,6 +1223,8 @@ L.Edit.Marker = L.Handler.extend({
 
 		marker.dragging.disable();
 		marker.off('dragend', this._onDragEnd, marker);
+		marker.off('touchmove', this._onTouchMove, this);
+
 		this._toggleMarkerHighlight();
 	},
 
@@ -1184,6 +1232,19 @@ L.Edit.Marker = L.Handler.extend({
 		var layer = e.target;
 		layer.edited = true;
 		this._map.fire('draw:editmove', {layer: layer});
+	},
+
+	_onTouchMove: function (e) {
+
+		// NOTE: touch: マップが動かないようにする
+		L.DomEvent.preventDefault(e.originalEvent);
+
+		var map = this._marker._map;
+
+		var layerPoint = map.mouseEventToLayerPoint(e.originalEvent.touches[0]);
+		var latlng = map.layerPointToLatLng(layerPoint);
+
+		this._marker.setLatLng(latlng);
 	},
 
 	_toggleMarkerHighlight: function () {
@@ -1548,6 +1609,9 @@ L.Edit.PolyVerticesEdit = L.Handler.extend({
 			latlng = this._map.layerPointToLatLng(layerPoint),
 			marker = e.target;
 
+		// NOTE: touch: マップが動かないようにする
+		L.DomEvent.preventDefault(e.originalEvent);
+
 		L.extend(marker._origLatLng, latlng);
 
 		if (marker._middleLeft) {
@@ -1866,6 +1930,9 @@ L.Edit.SimpleShape = L.Handler.extend({
 		var layerPoint = this._map.mouseEventToLayerPoint(e.originalEvent.touches[0]),
 			latlng = this._map.layerPointToLatLng(layerPoint),
 			marker = e.target;
+
+		// NOTE: touch: マップが動かないようにする
+		L.DomEvent.preventDefault(e.originalEvent);
 
 		if (marker === this._moveMarker) {
 			this._move(latlng);

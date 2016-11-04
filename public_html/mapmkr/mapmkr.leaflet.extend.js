@@ -123,6 +123,21 @@ L.Map.prototype.openPopup = function (popup, latlng, options) {
 };
 
 ////////////////////////////////////////////////////////////////////////
+// タッチデバイスの設定
+////////////////////////////////////////////////////////////////////////
+
+// NOTE: PC の Internet Explorer、Microsoft Edge でタッチデバイスの UI に
+//       なってしまうのを防ぐ
+
+L.Browser.edge = 'msLaunchUri' in navigator && !('documentMode' in document);
+
+if (L.Browser.touch && (L.Browser.edge || L.Browser.ie)) {
+	if (!("ontouchstart" in window)) {
+		L.Browser.touch = false;
+	}
+}
+
+////////////////////////////////////////////////////////////////////////
 // 作図時に右クリックでブラウザのコンテキストメニューが表示されてしまうため、
 // 表示の有効・無効の制御処理を追加する
 //----------------------------------------------------------------------

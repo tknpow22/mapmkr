@@ -171,16 +171,6 @@ L.EditToolbar.Edit.include({
 });
 
 ////////////////////////////////////////////////////////////////////////
-// タッチデバイスを無効にする
-////////////////////////////////////////////////////////////////////////
-
-// NOTE: L.Browser.touch の判定が微妙なので、今のところ PC 版のみ。
-//       できればどちらのデバイスを使うかユーザーに選択させるようにしたい。
-//       (最近はタッチもマウスも両方できるものがある)
-
-L.Browser.touch = false;
-
-////////////////////////////////////////////////////////////////////////
 // 線、ポリゴンを左クリックでのみ作成するように変更
 ////////////////////////////////////////////////////////////////////////
 
@@ -194,6 +184,18 @@ L.Draw.Polyline.prototype._onMouseDown = function (e) {
 		L.Draw.Polyline.prototype._MKR__onMouseDown_original.call(this, e);
 	}
 };
+
+////////////////////////////////////////////////////////////////////////
+// NOTE: touch: 描画時のタッチ用アイコンのサイズを設定
+////////////////////////////////////////////////////////////////////////
+
+L.Draw.Polyline.prototype.options.touchIcon.options.iconSize = new L.Point(40, 40);
+
+////////////////////////////////////////////////////////////////////////
+// NOTE: touch: 編集時のタッチ用アイコンのサイズを設定
+////////////////////////////////////////////////////////////////////////
+
+L.Edit.PolyVerticesEdit.prototype.options.touchIcon.options.iconSize = new L.Point(40, 40);
 
 ////////////////////////////////////////////////////////////////////////
 // 円(および四角)を左クリックでのみ作成するように変更
@@ -408,7 +410,6 @@ MKR.Draw.DivIconMarker = L.Draw.Marker.extend({
 	//
 
 	_onClick: function () {
-		this._figureCreated = true;
 		this._fireCreatedEvent();
 	},
 
@@ -443,6 +444,12 @@ MKR.Draw.DivIconMarker = L.Draw.Marker.extend({
 
 	_fireCreatedEvent: function () {
 		var self = this;
+
+		if (this._figureCreated) {
+			return;
+		}
+
+		this._figureCreated = true;
 
 		var figureSettingsDialog = new MKR.Dialog.ModalDivIconMarkerSettings(this._dialogManager,
 			this._figureOption, {
@@ -487,7 +494,7 @@ MKR.Edit.Poly = L.Edit.Poly.extend({
 
 	_iconUrl: "images/icon_move.png",
 
-	_iconSize: [24, 24],
+	_iconSize: (L.Browser.touch) ? [48, 48] : [24, 24],
 
 	_typeHelper: null,
 
@@ -639,6 +646,9 @@ MKR.Edit.Poly = L.Edit.Poly.extend({
 		var layerPoint = this._map.mouseEventToLayerPoint(e.originalEvent.touches[0]);
 		var latlng = this._map.layerPointToLatLng(layerPoint);
 
+		// NOTE: touch: マップが動かないようにする
+		L.DomEvent.preventDefault(e.originalEvent);
+
 		this._move(latlng);
 
 		// prevent touchcancel in IOS
@@ -677,6 +687,9 @@ MKR.Edit.Poly = L.Edit.Poly.extend({
 				latlngs[i].lng += lngMove;
 			}
 		}
+
+		// NOTE: touch: 移動マーカーの位置設定
+		marker.setLatLng(latlng);
 
 		marker._origLatLng = latlng;
 		this._poly.redraw();
@@ -730,6 +743,38 @@ L.Polyline.addInitHook(function () {
 // 円
 //----------------------------------------------------------------------
 
+// NOTE: touch
+
+L.Edit.Circle.prototype._move = function (latlng) {
+	var resizemarkerPoint = this._getResizeMarkerPoint(latlng);
+
+	// Move the resize marker
+	this._resizeMarkers[0].setLatLng(resizemarkerPoint);
+
+	// Move the circle
+	this._shape.setLatLng(latlng);
+
+	// NOTE: touch: 移動マーカーの位置設定を追加する
+	this._moveMarker.setLatLng(latlng);
+
+	this._map.fire('draw:editmove', {layer: this._shape});
+};
+
+// NOTE: touch
+
+L.Edit.Circle.prototype._resize = function (latlng) {
+	var moveLatLng = this._moveMarker.getLatLng(),
+		radius = moveLatLng.distanceTo(latlng);
+
+	// NOTE: touch: リサイズマーカーの位置設定を追加する
+	var resizemarkerPoint = this._getResizeMarkerPoint(this._shape.getLatLng());
+	this._resizeMarkers[0].setLatLng(resizemarkerPoint);
+
+	this._shape.setRadius(radius);
+
+	this._map.fire('draw:editresize', {layer: this._shape});
+};
+
 MKR.Edit.Circle = L.Edit.Circle.extend({
 
 	options: {
@@ -738,7 +783,17 @@ MKR.Edit.Circle = L.Edit.Circle.extend({
 			iconSize: [24, 24],
 			iconAnchor: [12, 12],
 			className: 'leaflet-edit-move'
-		})
+		}),
+		touchMoveIcon: new L.Icon({
+			iconUrl: "images/icon_move.png",
+			iconSize: [48, 48],
+			iconAnchor: [24, 24],
+			className: 'leaflet-edit-move'
+		}),
+		touchResizeIcon: new L.DivIcon({
+			iconSize: new L.Point(40, 40),
+			className: 'leaflet-div-icon leaflet-editing-icon leaflet-edit-resize leaflet-touch-icon'
+		}),
 	}
 
 });
@@ -768,7 +823,17 @@ MKR.Edit.CircleMarker = L.Edit.Circle.extend({
 			iconSize: [24, 24],
 			iconAnchor: [12, 12],
 			className: 'leaflet-edit-move'
-		})
+		}),
+		touchMoveIcon: new L.Icon({
+			iconUrl: "images/icon_move.png",
+			iconSize: [48, 48],
+			iconAnchor: [24, 24],
+			className: 'leaflet-edit-move'
+		}),
+		touchResizeIcon: new L.DivIcon({
+			iconSize: new L.Point(40, 40),
+			className: 'leaflet-div-icon leaflet-editing-icon leaflet-edit-resize leaflet-touch-icon'
+		}),
 	},
 
 	//
@@ -802,6 +867,10 @@ MKR.Edit.CircleMarker = L.Edit.Circle.extend({
 	_resize: function (latlng) {
 
 		var moveLatLng = this._moveMarker.getLatLng();
+
+		// NOTE: touch: リサイズマーカーの位置設定を追加する
+		var resizemarkerPoint = this._getResizeMarkerPoint( this._shape.getLatLng());
+		this._resizeMarkers[0].setLatLng(resizemarkerPoint);
 
 		var centerPoint = this._map.latLngToLayerPoint(moveLatLng);
 		var resizeMarkerPoint = this._map.latLngToLayerPoint(latlng);
@@ -951,7 +1020,7 @@ MKR.Edit.Selector.Path = L.Handler.extend({
 
 	options: {
 		iconUrl: "images/icon_cog.png",
-		iconSize: [24, 24]
+		iconSize: (L.Browser.touch) ? [48, 48] : [24, 24]
 	},
 
 	_map: null,
