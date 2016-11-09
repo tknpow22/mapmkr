@@ -140,6 +140,8 @@ MKR.Dialog.ModalMarkerSettings = MKR.Dialog.ModalSettingsBase.extend({
 
 	initialWidth: 440,
 
+	_markerIconCurrentWgt: null,
+
 	_markerSizeWgt: null,
 
 	//
@@ -179,7 +181,7 @@ MKR.Dialog.ModalMarkerSettings = MKR.Dialog.ModalSettingsBase.extend({
 								"<div class='dropdown-menu mkr_scrollable_menu mkr_marker_icon_list'>" +
 								"</div>" +
 							"</div>" +
-
+							"<button type='button' class='btn btn-default mkr_icon_import' title='アイコンを設定'><i class='fa fa-folder-open-o' aria-hidden='true'></i></button>" +
 						"</div>" +
 					"</div>" +
 
@@ -213,13 +215,14 @@ MKR.Dialog.ModalMarkerSettings = MKR.Dialog.ModalSettingsBase.extend({
 		var dialogBodyWgt = $(dialogBodyTemplate);
 		var markerIconListWgt = dialogBodyWgt.find(".mkr_marker_icon_list");
 		this._markerSizeWgt = dialogBodyWgt.find(".mkr_marker_size");
+		this._markerIconCurrentWgt = dialogBodyWgt.find(".mkr_marker_icon_current");
 
 		//
 		// 画面
 		//
 
 		// アイコン
-		dialogBodyWgt.find(".mkr_marker_icon_current").attr({"src": figureOption.draw.icon.options.iconUrl});
+		this._markerIconCurrentWgt.attr({"src": figureOption.draw.icon.options.iconUrl});
 
 		// 拡大率
 		var markerSize = String(figureOption.draw.icon.options.iconSize[0]);
@@ -244,8 +247,18 @@ MKR.Dialog.ModalMarkerSettings = MKR.Dialog.ModalSettingsBase.extend({
 		// マーカーアイコン一覧から選択した時
 		markerIconListWgt.on("click", ".mkr_marker_icon_selector", function (event) {
 			var src = $(this).find(".mkr_marker_select_icon").attr("src");
-			dialogBodyWgt.find(".mkr_marker_icon_current").attr("src", src);
+			self._markerIconCurrentWgt.attr("src", src);
 		});
+
+		// アイコンを設定
+		dialogBodyWgt.find(".mkr_icon_import").on("click", function (event) {
+			var importIconImageDialog = new MKR.Dialog.ModalImportIconImage(dialogManager, self._markerIconCurrentWgt.attr("src"));
+			importIconImageDialog.on("mkrDialog:ok", function (event) {
+				self._markerIconCurrentWgt.attr("src", event.url);
+			});
+			importIconImageDialog.showModal();
+		});
+
 
 		MKR.Dialog.ModalSettingsBase.prototype.initialize.call(this, dialogManager, "mkr_marker_settings_dialog", "マーカー（アイコン）の設定", dialogBodyWgt, MKR.FigureType.Marker, figureOption, this.options);
 	},
@@ -265,7 +278,7 @@ MKR.Dialog.ModalMarkerSettings = MKR.Dialog.ModalSettingsBase.extend({
 		var anchor = Math.floor(size / 2);
 
 		figureOptionNew.draw.icon = new L.Icon({
-			iconUrl: dialogWgt.find(".mkr_marker_icon_current").attr("src"),
+			iconUrl: this._markerIconCurrentWgt.attr("src"),
 			iconSize: [size, size],
 			iconAnchor: [anchor, anchor]
 		});
@@ -275,6 +288,180 @@ MKR.Dialog.ModalMarkerSettings = MKR.Dialog.ModalSettingsBase.extend({
 		return figureOptionNew;
 	}
 });
+
+
+////////////////////////////////////////////////////////////////////////
+// アイコンの設定ダイアログ
+////////////////////////////////////////////////////////////////////////
+
+MKR.Dialog.ModalImportIconImage = MKR.Dialog.ModalBase.extend({
+
+	// OK: mkrDialog:ok
+	// キャンセル: mkrDialog:cancel
+	includes: L.Mixin.Events,
+
+	minWidth: 500,
+	maxWidth: 500,
+
+	//
+	// 初期化処理
+	//----------------------------------------------------------------------
+	//
+
+	initialize: function (dialogManager, origUrl) {
+
+		var self = this;
+
+		origUrl = origUrl || "";
+
+		var dialogBodyTemplate =
+			"<div>" +
+
+				"<div class='form-horizontal'>" +
+
+					"<div class='form-group'>" +
+						"<label class='col-xs-4 control-label mkr_required'>URL</label>" +
+						"<div class='col-xs-8'>" +
+							"<textarea class='form-control mkr_url' placeholder='例:http://www.koutou-software.net/images/kswsLogo.png'></textarea>" +
+						"</div>" +
+						"<div class='col-xs-offset-4 col-xs-8'>" +
+							"<div class='mkr_url_description'>" +
+								"大きさが 20 × 20 の画像を指定してください。" +
+							"</div>" +
+						"</div>" +
+					"</div>" +
+
+					"<div class='form-group mkr_img_file_pane'>" +
+						"<label class='col-xs-4 control-label'>ファイルから取込み</label>" +
+						"<div class='col-xs-8'>" +
+							"<input type='file' class='mkr_img_file_name' />" +
+						"</div>" +
+						"<div class='col-xs-offset-4 col-xs-8'>" +
+							"<div class='mkr_img_file_name_description'>" +
+								MKR.Const.DataImageWarning +
+							"</div>" +
+						"</div>" +
+					"</div>" +
+
+				"</div>" +
+
+				"<div class='mkr_dialog_footer'>" +
+					"<button type='button' class='btn btn-success mkr_ok'>OK</button>" +
+					"<button type='button' class='btn btn-default mkr_cancel'>キャンセル</button>" +
+				"</div>" +
+
+			"</div>" +
+			"";
+
+		var dialogBodyWgt = $(dialogBodyTemplate);
+		var urlWgt = dialogBodyWgt.find(".mkr_url");
+		var imgFilenameWgt = dialogBodyWgt.find(".mkr_img_file_name");
+
+		imgFilenameWgt.fileinput({
+			language: "ja",
+
+			browseClass: "btn btn-default",
+			browseLabel: "",
+
+			removeLabel: "",
+			removeIcon: "<i class='glyphicon glyphicon-remove'></i>",
+			removeTitle: "ファイル選択を取り消します",
+
+			showPreview: false,
+			showUpload: false,
+			showRemove: true
+		});
+
+		var urlPopover = new MKR.Widget.InputPopover(urlWgt.parents(".form-group"), urlWgt);
+
+		// fileinput により生成されたエレメントを popover の対象とする
+		var imgFilenamePopover = new MKR.Widget.InputPopover(imgFilenameWgt.parents(".form-group"), dialogBodyWgt.find(".mkr_img_file_pane .file-input .file-caption"));
+
+		//
+		// 画面
+		//
+
+		urlWgt.val(origUrl);
+
+		//
+		// イベント
+		//
+
+		imgFilenameWgt.on("change", function (event) {
+
+			var imgFilename = $.trim(imgFilenameWgt.val());
+			if (imgFilename === "") {
+				return;
+			}
+
+			var files = imgFilenameWgt.prop("files");
+			if (!files || files.length <= 0) {
+				imgFilenamePopover.showError("ファイルを取得できません");
+				return;
+			}
+
+			var fileReader = new FileReader();
+			fileReader.onload = function (event) {
+				var dataUrl = event.target.result;
+
+				if (dataUrl.indexOf("data:image") === 0) {
+					urlWgt.val(dataUrl);
+					imgFilenamePopover.hide();
+				} else {
+					imgFilenamePopover.showError("ファイルの形式が違います");
+				}
+			};
+			fileReader.onerror = function(event) {
+				imgFilenamePopover.showError("読み込みに失敗しました");
+			};
+			fileReader.readAsDataURL(files[0]);
+		});
+
+		// OK
+		dialogBodyWgt.find(".mkr_ok").on("click", function (event) {
+
+			var url = MKR.WidgetUtil.trimVal(urlWgt);
+
+			if (url === "") {
+				urlPopover.showError("URL を入力してください");
+				return;
+			}
+			if (url.indexOf("data:image") === 0 || url.indexOf("http://") === 0 || url.indexOf("https://") === 0) {
+				// OK
+			} else {
+				urlPopover.showError("URL を入力してください");
+				return;
+			}
+			urlPopover.hide();
+
+			self.fire("mkrDialog:ok", { url: url });
+			self.close();
+		});
+
+		// キャンセル
+		dialogBodyWgt.find(".mkr_cancel").on("click", function (event) {
+			self.fire("mkrDialog:cancel");
+			self.close();
+		});
+
+		MKR.Dialog.ModalBase.prototype.initialize.call(this, dialogManager, "mkr_import_icon_image_dialog", "アイコンの設定", dialogBodyWgt, {
+			resizable: false,
+			minWidth: this.minWidth,
+			maxWidth: this.maxWidth
+		});
+	},
+
+	//
+	// 表示時に呼び出される
+	//----------------------------------------------------------------------
+	//
+
+	onShown: function () {
+		this.dialogWgt.find(".mkr_url").focus();
+	}
+});
+
+
 
 ////////////////////////////////////////////////////////////////////////
 // 線の作図設定ダイアログ

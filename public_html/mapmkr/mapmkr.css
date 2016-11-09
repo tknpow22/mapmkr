@@ -184,6 +184,14 @@
 }
 
 /***********************************************************************
+ * Bootstrap File Input
+ ***********************************************************************/
+
+.mkr_dialog .file-caption-name {
+	height: 24px;
+}
+
+/***********************************************************************
  * Trumbowyg
  ***********************************************************************/
 
@@ -719,6 +727,7 @@ textarea {
 	padding-top: 0px;
 	padding-bottom: 4px;
 	height: 20px;
+	width: 16px;
 	margin-right: 8px;
 }
 
@@ -906,10 +915,6 @@ textarea {
 	font-size: 12px;
 }
 
-.mkr_load_layer_dialog .file-caption-name {
-	height: 24px;
-}
-
 .mkr_load_layer_dialog .checkbox input[type="checkbox"].mkr_remove_exists_layer {
 	margin-top: 7px;
 }
@@ -967,6 +972,7 @@ textarea {
 	padding-top: 0px;
 	padding-bottom: 4px;
 	height: 20px;
+	width: 16px;
 	margin-right: 8px;
 }
 
@@ -994,6 +1000,11 @@ textarea {
 
 .mkr_marker_settings_dialog .mkr_marker_icon {
 	height: 20px;
+	width: 20px;
+}
+
+.mkr_marker_settings_dialog .mkr_icon_import {
+	margin-left: 4px;
 }
 
 .mkr_marker_settings_dialog .mkr_scrollable_menu {
@@ -1014,6 +1025,29 @@ textarea {
 
 .mkr_marker_settings_dialog .mkr_marker_icon_selector img:hover {
 	border: 6px solid #ccc;
+}
+
+/*---------------------------------------------------------------------*
+ * アイコンの設定ダイアログ
+ *---------------------------------------------------------------------*/
+
+.mkr_import_icon_image_dialog .form-group {
+	margin-bottom: 5px;
+}
+
+.mkr_import_icon_image_dialog .mkr_url_description,
+.mkr_import_icon_image_dialog .mkr_img_file_name_description {
+	margin-top: 4px;
+	font-size: 12px;
+	color: red;
+}
+
+.mkr_import_icon_image_dialog .mkr_url {
+	height: 150px;
+}
+
+.mkr_import_icon_image_dialog .mkr_dialog_footer {
+	margin-top: 15px;
 }
 
 /*---------------------------------------------------------------------*

@@ -51,8 +51,7 @@ MKR.Trumbowyg.Dialog.ModalInsertImage = MKR.Dialog.ModalBase.extend({
 						"</div>" +
 						"<div class='col-xs-offset-4 col-xs-8'>" +
 							"<div class='mkr_img_file_name_description'>" +
-								"ファイルから取込みを行うと、画像を図形データ中に文字列として埋め込むため、処理に時間がかかり、予期せぬタイミングで、画面が反応しなくなることがあります。" +
-								"そのままお待ちいただければ、いずれ復帰しますが、画像サイズによっては復帰までにかなりお待ちいただく場合があります。申し訳ありませんが、ご留意ください。" +
+								MKR.Const.DataImageWarning +
 							"</div>" +
 						"</div>" +
 					"</div>" +
