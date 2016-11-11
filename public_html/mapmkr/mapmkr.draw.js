@@ -149,7 +149,7 @@ MKR.DrawFigure = L.Class.extend({
 				//       2 つ作成してしまうのを回避する。
 				setTimeout(function () {
 					self.beginFigure(figureType, figureOption, drawRepeat);
-				}, 100);
+				}, 200);
 			}
 		});
 
