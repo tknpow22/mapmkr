@@ -10,11 +10,11 @@ MKR.Dialog.Construction = MKR.Dialog.Base.extend({
 
 	initialHeight: 98,
 
-	initialWidth: 660,
+	initialWidth: 690,
 
 	_maxHeight: 620,
 
-	_maxWidth: 760,
+	_maxWidth: 790,
 
 	_layerShowHeight: 136,	// ダイアログ高さがこの高さを超えると、レイヤ操作部を表示する
 
@@ -66,9 +66,22 @@ MKR.Dialog.Construction = MKR.Dialog.Base.extend({
 								"<li><a href='" + MKR.Const.JSVoid + "' class='mkr_clear_layers'><i class='fa fa-times-circle' aria-hidden='true'></i>すべての図形を削除</a></li>" +
 							"</ul>" +
 						"</div>" +
+
 						"<div class='btn-group btn-group-sm' role='group'>" +
-							"<button type='button' class='btn btn-default mkr_save_layer' title='ファイルへ保存'><i class='fa fa-save' aria-hidden='true'></i></button>" +
+							"<button type='button' class='btn btn-default mkr_save_layer_browser' title='ブラウザへ保存'><i class='fa fa-download' aria-hidden='true'></i></button>" +
+
+							"<button type='button' class='btn btn-default dropdown-toggle mkr_selector' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' title='処理を選択'>" +
+								"<span class='caret'></span>" +
+							"</button>" +
+
+							"<ul class='dropdown-menu mkr_scrollable_menu'>" +
+								"<li><a href='" + MKR.Const.JSVoid + "' class='mkr_save_layer_browser'><i class='fa fa-download' aria-hidden='true'></i>ブラウザへ保存</a></li>" +
+								"<li role='separator' class='divider'></li>" +
+								"<li><a href='" + MKR.Const.JSVoid + "' class='mkr_save_layer'><i class='fa fa-save' aria-hidden='true'></i>ファイルへ保存</a></li>" +
+							"</ul>" +
+
 						"</div>" +
+
 					"</div>" +
 
 					"<div class='mkr_extend_operation'>" +
@@ -693,6 +706,22 @@ MKR.Dialog.Construction = MKR.Dialog.Base.extend({
 
 				saveLayerDialog.showModal();
 			}
+		});
+
+		// ブラウザへ保存
+		fileOperationWgt.find(".mkr_save_layer_browser").on("click", function (event) {
+			$(this).blur();
+
+			drawFigure.cancelAll();
+
+			layerManager.saveLayersToBrowser(function () {
+				var alertDialog = new MKR.Dialog.ModalAlert(self.getDialogManager(),
+					"ブラウザへの保存に失敗しました。", {
+						minWidth: 350,
+						maxWidth: 400
+					});
+				alertDialog.showModal();
+			});
 		});
 
 		//// 作図のためのボタン

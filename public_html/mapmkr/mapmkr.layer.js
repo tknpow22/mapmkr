@@ -50,6 +50,8 @@ MKR.LayerManager = L.Class.extend({
 
 	_contextMenu: null,
 
+	_figureDataStorage: null,
+
 	_layerInfoList: null,	// [MKR.Layer.LayerInfo, ...]
 
 	_currentLayerInfoIndex: -1,
@@ -67,18 +69,35 @@ MKR.LayerManager = L.Class.extend({
 		"viewmap.js"
 	],
 
+	_figureDataStorageKey: "figureData",
+
 	//
 	// 初期化処理
 	//----------------------------------------------------------------------
 	//
 
-	initialize: function (mapManager, contextMenu) {
+	initialize: function (mapManager, contextMenu, figureDataStorage) {
 		var self = this;
 
 		this._map = mapManager.getMap();
 		this._mapManager = mapManager;
 		this._contextMenu = contextMenu;
+		this._figureDataStorage = figureDataStorage;
 		this._layerInfoList = [];
+	},
+
+	//
+	// レイヤを初期化する
+	//----------------------------------------------------------------------
+	//
+
+	initLayers: function () {
+		this.addNewLayer();
+
+		var figureDataBase64ZipData = this._figureDataStorage.get(this._figureDataStorageKey);
+		if (figureDataBase64ZipData !== null) {
+			this.loadLayersFromBase64Zip(figureDataBase64ZipData, true);
+		}
 	},
 
 	//
@@ -578,8 +597,6 @@ MKR.LayerManager = L.Class.extend({
 	//
 	// レイヤデータをダウンロードする
 	//----------------------------------------------------------------------
-	// successCallback: function (content) {}
-	// errorCallback: function () {}
 	//
 
 	downloadLayers: function (zipFilename, publishInfo, includePublishFiles, compress) {
@@ -590,6 +607,24 @@ MKR.LayerManager = L.Class.extend({
 		}, function () {
 			self.fire("mkrLayer:downloadError");
 		});
+	},
+
+	//
+	// レイヤデータをブラウザに保存する
+	//----------------------------------------------------------------------
+	// errorCallback: function () {}
+	//
+
+	saveLayersToBrowser: function (errorCallback) {
+		var self = this;
+
+		if (this.getVisibleFiguresCount() <= 0) {
+			this._figureDataStorage.remove(this._figureDataStorageKey);
+		} else {
+			this.createZip("base64", null, false, true, function (content) {
+				self._figureDataStorage.set(self._figureDataStorageKey, content);
+			}, errorCallback);
+		}
 	},
 
 	//

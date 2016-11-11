@@ -23,12 +23,14 @@ MKR.Main = {
 		var settings = new MKR.Settings(settingsStorage);
 		settings.load();
 
+		var figureDataStorage = new MKR.LocalStorage("figureData");
+
 		var dialogManager = new MKR.DialogManager();
 
 		var popupWindow = new MKR.Widget.PopupWindow(map);
 		var contextMenu = new MKR.Widget.ContextMenu(map, dialogManager);
 
-		var layerManager = new MKR.LayerManager(mapManager, contextMenu);
+		var layerManager = new MKR.LayerManager(mapManager, contextMenu, figureDataStorage);
 
 		var drawFigure = new MKR.DrawFigure(map, layerManager, dialogManager, popupWindow, contextMenu);
 
@@ -45,7 +47,7 @@ MKR.Main = {
 
 		constructionDialog.show();
 
-		layerManager.addNewLayer();
+		layerManager.initLayers();
 	}
 };
 
