@@ -142,11 +142,6 @@ MKR.DrawFigure = L.Class.extend({
 			self.fire("mkrFigure:figureStop");
 
 			if (drawRepeat) {
-				// 少し待つ
-				// NOTE: タイミングに依存したコーディングで嫌なのだけれど、
-				//       touch が有効な場合、マーカー(アイコン) を map への touch で作成後、
-				//       次のマーカー(アイコン)の作成に入った時に map への click を拾ってしまい、
-				//       2 つ作成してしまうのを回避する。
 				setTimeout(function () {
 					self.beginFigure(figureType, figureOption, drawRepeat);
 				}, 200);

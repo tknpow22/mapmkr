@@ -43,6 +43,11 @@
  * NOTE: touch: マーカー(アイコン)を移動できるようにするため、
  *              L.Edit.Marker で touchmove イベントをハンドリングする。
  *
+ * @modified.v=5:
+ *----------------------------------------------------------------------
+ * 作図の繰り返し時に touch 後の click の処置に困ったので、
+ * L.Draw.Marker のイベントを整理し、マップからの click イベントは拾わないようにした。
+ *
  */
 (function (window, document, undefined) {/*
  * Leaflet.draw assumes that you have already included the Leaflet library.
@@ -1121,12 +1126,9 @@ L.Draw.Marker = L.Draw.Feature.extend({
 				});
 			}
 
-			this._mouseMarker
-				.on('click', this._onClick, this)
-				.addTo(this._map);
+			this._mouseMarker.addTo(this._map);
 
 			this._map.on('mousemove', this._onMouseMove, this);
-			this._map.on('click', this._onTouch, this);
 			this._map.on('touchstart', this._onTouch, this);
 		}
 	},
@@ -1142,11 +1144,6 @@ L.Draw.Marker = L.Draw.Feature.extend({
 				delete this._marker;
 			}
 
-			this._map
-				.off('click', this._onClick, this)
-				.off('click', this._onTouch, this);
-
-			this._mouseMarker.off('click', this._onClick, this);
 			this._map.removeLayer(this._mouseMarker);
 			delete this._mouseMarker;
 
@@ -1166,11 +1163,9 @@ L.Draw.Marker = L.Draw.Feature.extend({
 				icon: this.options.icon,
 				zIndexOffset: this.options.zIndexOffset
 			});
-			// Bind to both marker and map to make sure we get the click event.
+
 			this._marker.on('click', this._onClick, this);
-			this._map
-				.on('click', this._onClick, this)
-				.addLayer(this._marker);
+			this._map.addLayer(this._marker);
 		}
 		else {
 			latlng = this._mouseMarker.getLatLng();
@@ -1188,7 +1183,6 @@ L.Draw.Marker = L.Draw.Feature.extend({
 	},
 
 	_onTouch: function (e) {
-		// called on click & tap, only really does any thing on tap
 		this._onMouseMove(e); // creates & places marker
 		this._onClick(); // permanently places marker & ends interaction
 	},
