@@ -511,8 +511,7 @@ MKR.Edit.Poly = L.Edit.Poly.extend({
 		var figureType = MKR.LeafletUtil.getFigureType(this._poly);
 		this._typeHelper = new MKR.TypeHelper(figureType);
 
-		var bounds = this._poly.getBounds();
-		var latlng = bounds.getCenter();
+		var latlng = this._getMoveMarkerLatLng();
 
 		var zoom = this._map.getZoom();
 		var iconAnchor = this._typeHelper.widget.getIconAnchor(this._iconSize, zoom);
@@ -538,7 +537,6 @@ MKR.Edit.Poly = L.Edit.Poly.extend({
 			.on("MSPointerMove", this._onTouchMove, this)
 			.on("touchend", this._onTouchEnd, this)
 			.on("MSPointerUp", this._onTouchEnd, this);
-		this._map.on("zoomend", this._onZoomEnd, this);
 
 		this._moveMarker = marker;
 		this._markerGroup = new L.LayerGroup();
@@ -552,7 +550,6 @@ MKR.Edit.Poly = L.Edit.Poly.extend({
 	//
 
 	removeHooks: function () {
-		this._map.off("zoomend", this._onZoomEnd, this);
 		this._moveMarker
 			.off("dragstart", this._onMarkerDragStart, this)
 			.off("drag", this._onMarkerDrag, this)
@@ -579,8 +576,7 @@ MKR.Edit.Poly = L.Edit.Poly.extend({
 	_onEdit: function (e) {
 
 		if (this._moveMarker) {
-			var bounds = this._poly.getBounds();
-			var latlng = bounds.getCenter();
+			var latlng = this._getMoveMarkerLatLng();
 
 			this._moveMarker._origLatLng = latlng;
 			this._moveMarker.setLatLng(latlng);
@@ -699,29 +695,18 @@ MKR.Edit.Poly = L.Edit.Poly.extend({
 	},
 
 	//
-	// マップズーム完了時の処理
+	// 移動マーカーの座標位置を得る
 	//----------------------------------------------------------------------
 	//
 
-	_onZoomEnd: function (e) {
+	_getMoveMarkerLatLng: function () {
 
-		if (this._moveMarker) {
+		var latlngs = this.latlngs[0];
 
-			var bounds = this._poly.getBounds();
-			var latlng = bounds.getCenter();
+		var p1 = this._map.project(latlngs[0]);
+		var p2 = this._map.project(latlngs[1]);
 
-			var zoom = this._map.getZoom();
-			var iconAnchor = this._typeHelper.widget.getIconAnchor(this._iconSize, zoom);
-
-			this._moveMarker.setIcon(
-				new L.Icon({
-					iconUrl: this._iconUrl,
-					iconSize: this._iconSize,
-					iconAnchor: iconAnchor
-				})
-			);
-			this._moveMarker.setLatLng(latlng);
-		}
+		return this._map.unproject(p1._multiplyBy(0.75)._add(p2._multiplyBy(0.25)));
 	}
 });
 
@@ -1056,8 +1041,7 @@ MKR.Edit.Selector.Path = L.Handler.extend({
 		var figureType = MKR.LeafletUtil.getFigureType(this._figureLayer);
 		this._typeHelper = new MKR.TypeHelper(figureType);
 
-		var bounds = this._figureLayer.getBounds();
-		var latlng = bounds.getCenter();
+		var latlng = this._getMarkerLatLng();
 
 		var zoom = this._map.getZoom();
 		var iconAnchor = this._typeHelper.widget.getIconAnchor(this.options.iconSize, zoom);
@@ -1071,13 +1055,11 @@ MKR.Edit.Selector.Path = L.Handler.extend({
 		});
 
 		marker.on("click", this._onClick, this);
-		this._map.on("zoomend", this._onZoomEnd, this);
 
 		this._settingMarker = marker;
 		this._markerGroup = new L.LayerGroup();
 		this._markerGroup.addLayer(marker);
 		this._map.addLayer(this._markerGroup);
-
 	},
 
 	//
@@ -1087,11 +1069,6 @@ MKR.Edit.Selector.Path = L.Handler.extend({
 
 	removeHooks: function () {
 		// NOTE: 削除の際のセレクタとして使う場合、removeLayer() された時と、_disableLayerDelete() の呼び出し時とで 2 度呼ばれるので注意
-
-		if (this._map) {
-			// NOTE: 上記理由で 2 度 off されてしまうが、off するハンドラがない場合、何もされないのを確認済み
-			this._map.off("zoomend", this._onZoomEnd, this);
-		}
 
 		if (this._settingMarker) {
 			this._settingMarker.off("click", this._onClick, this);
@@ -1105,37 +1082,36 @@ MKR.Edit.Selector.Path = L.Handler.extend({
 	},
 
 	//
-	// マップズーム完了時の処理
-	//----------------------------------------------------------------------
-	//
-
-	_onZoomEnd: function (e) {
-		if (this._settingMarker) {
-
-			var bounds = this._figureLayer.getBounds();
-			var latlng = bounds.getCenter();
-
-			var zoom = this._map.getZoom();
-			var iconAnchor = this._typeHelper.widget.getIconAnchor(this.options.iconSize, zoom);
-
-			this._settingMarker.setIcon(
-				new L.Icon({
-					iconUrl: this.options.iconUrl,
-					iconSize: this.options.iconSize,
-					iconAnchor: iconAnchor
-				})
-			);
-			this._settingMarker.setLatLng(latlng);
-		}
-	},
-
-	//
 	// セレクタがクリックされた時の処理
 	//----------------------------------------------------------------------
 	//
 
 	_onClick: function (event) {
 		this.fire("click", { originalEvent: event, originalTarget: this._figureLayer });
+	},
+
+	//
+	// 設定マーカーの座標位置を得る
+	//----------------------------------------------------------------------
+	//
+
+	_getMarkerLatLng: function () {
+
+		var latlng;
+
+		if (this._figureLayer instanceof L.Polyline) {
+			var latlngs = this._figureLayer._latlngs;
+
+			var p1 = this._map.project(latlngs[0]);
+			var p2 = this._map.project(latlngs[1]);
+
+			latlng = this._map.unproject(p1._multiplyBy(0.75)._add(p2._multiplyBy(0.25)));
+		} else {
+			var bounds = this._figureLayer.getBounds();
+			latlng = bounds.getCenter();
+		}
+
+		return latlng;
 	}
 });
 

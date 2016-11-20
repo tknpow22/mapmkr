@@ -159,11 +159,6 @@ MKR.TypeHelper.Widget = {
 		var iconSizePoint = new L.Point(iconSize[0], iconSize[1]);
 		var anchorPoint = iconSizePoint.divideBy(2);
 
-		// マップの拡大率によっては作図等の妨げにならないよう少しずらして表示する
-		if (16 <= zoom) {
-			anchorPoint = iconSizePoint.add(anchorPoint);
-		}
-
 		return [anchorPoint.x, anchorPoint.y];
 	},
 
