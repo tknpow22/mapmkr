@@ -574,7 +574,6 @@ MKR.Edit.Poly = L.Edit.Poly.extend({
 	//
 
 	_onEdit: function (e) {
-
 		if (this._moveMarker) {
 			var latlng = this._getMoveMarkerLatLng();
 
@@ -599,6 +598,9 @@ MKR.Edit.Poly = L.Edit.Poly.extend({
 	//
 
 	_onMarkerDragStart: function (e) {
+		var marker = e.target;
+		marker.setOpacity(0);
+
 		this._poly.fire('editstart');
 	},
 
@@ -621,6 +623,9 @@ MKR.Edit.Poly = L.Edit.Poly.extend({
 	//
 
 	_onMarkerDragEnd: function (e) {
+		var marker = e.target;
+		marker.setOpacity(1);
+
 		this._fireEdit();
 	},
 
@@ -630,6 +635,9 @@ MKR.Edit.Poly = L.Edit.Poly.extend({
 	//
 
 	_onTouchStart: function (e) {
+		var marker = e.target;
+		marker.setOpacity(0);
+
 		this._poly.fire('editstart');
 	},
 
@@ -658,6 +666,9 @@ MKR.Edit.Poly = L.Edit.Poly.extend({
 	//
 
 	_onTouchEnd: function (e) {
+		var marker = e.target;
+		marker.setOpacity(1);
+
 		this._fireEdit();
 	},
 
