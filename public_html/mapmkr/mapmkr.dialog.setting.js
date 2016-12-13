@@ -33,8 +33,8 @@ MKR.Dialog.ModalFigureSettingsMaintenance = MKR.Dialog.ModalBase.extend({
 				"</ul>" +
 
 				"<div class='mkr_dialog_footer'>" +
-					"<button type='button' class='btn btn-success mkr_save'>保存</button>" +
-					"<button type='button' class='btn btn-default mkr_cancel'>キャンセル</button>" +
+					"<button type='button' class='btn btn-success mkr_save'>" + MKR.Lang.Dialog.ModalFigureSettingsMaintenance.saveButtonCaption + "</button>" +
+					"<button type='button' class='btn btn-default mkr_cancel'>" + MKR.Lang.Dialog.ModalFigureSettingsMaintenance.cancelButtonCaption + "</button>" +
 				"</div>" +
 
 			"</div>" +
@@ -44,10 +44,10 @@ MKR.Dialog.ModalFigureSettingsMaintenance = MKR.Dialog.ModalBase.extend({
 			"<li class='list-group-item mkr_name_group'>" +
 				"<div class='caption mkr_name' data-figure-option-name=''></div>" +
 				"<div class='btn-group' role='group'>" +
-					"<button type='button' class='btn btn-default mkr_rename' title='名前を変更'><i class='fa fa-edit' aria-hidden='true'></i></button>" +
-					"<button type='button' class='btn btn-default mkr_setting_figure' title='作図設定'><i class='fa fa-cog' aria-hidden='true'></i></button>" +
-					"<button type='button' class='btn btn-default mkr_copy' title='コピー'><i class='fa fa-copy' aria-hidden='true'></i></button>" +
-					"<button type='button' class='btn btn-default mkr_delete' title='削除'><i class='fa fa-trash-o' aria-hidden='true'></i></button>" +
+					"<button type='button' class='btn btn-default mkr_rename' title='" + MKR.Lang.Dialog.ModalFigureSettingsMaintenance.renameButtonTitle + "'><i class='fa fa-edit' aria-hidden='true'></i></button>" +
+					"<button type='button' class='btn btn-default mkr_setting_figure' title='" + MKR.Lang.Dialog.ModalFigureSettingsMaintenance.settingFigureButtonTitle + "'><i class='fa fa-cog' aria-hidden='true'></i></button>" +
+					"<button type='button' class='btn btn-default mkr_copy' title='" + MKR.Lang.Dialog.ModalFigureSettingsMaintenance.copyButtonTitle + "'><i class='fa fa-copy' aria-hidden='true'></i></button>" +
+					"<button type='button' class='btn btn-default mkr_delete' title='" + MKR.Lang.Dialog.ModalFigureSettingsMaintenance.deleteButtonTitle + "'><i class='fa fa-trash-o' aria-hidden='true'></i></button>" +
 				"</div>" +
 			"</li>" +
 			"";
@@ -97,9 +97,9 @@ MKR.Dialog.ModalFigureSettingsMaintenance = MKR.Dialog.ModalBase.extend({
 			var optionName = nameWgt.attr("data-figure-option-name");
 
 			var nameAsDialogOptions = {
-				dialogTitle: "名前を変更",
+				dialogTitle: MKR.Lang.Dialog.ModalFigureSettingsMaintenance.renameAsDialog.dialogTitle,
 				srcName: optionName,
-				okWidgetCaption: "変更",
+				okWidgetCaption: MKR.Lang.Dialog.ModalFigureSettingsMaintenance.renameAsDialog.okWidgetCaption,
 				nameCheckCallback: function (srcName, destName, nameAsDialog) {
 
 					if (optionName === destName) {
@@ -108,7 +108,7 @@ MKR.Dialog.ModalFigureSettingsMaintenance = MKR.Dialog.ModalBase.extend({
 					} else {
 
 						if (0 <= MKR.SettingUtil.indexOfNamedFigureOptionByName(namedFigureOptionListWork, destName)) {
-							var alertDialog = new MKR.Dialog.ModalAlert(dialogManager, "同名の作図設定があります。別の名前を付けてください。");
+							var alertDialog = new MKR.Dialog.ModalAlert(dialogManager, MKR.Lang.Dialog.ModalFigureSettingsMaintenance.renameAsDialog.sameNameExistsMessage);
 							alertDialog.showModal();
 						} else {
 							nameAsDialog.nameOk(destName);
@@ -181,13 +181,13 @@ MKR.Dialog.ModalFigureSettingsMaintenance = MKR.Dialog.ModalBase.extend({
 			var optionName = nameWgt.attr("data-figure-option-name");
 
 			var nameAsDialogOptions = {
-				dialogTitle: "コピー",
+				dialogTitle: MKR.Lang.Dialog.ModalFigureSettingsMaintenance.copyAsDialog.dialogTitle,
 				srcName: optionName,
-				okWidgetCaption: "保存",
+				okWidgetCaption: MKR.Lang.Dialog.ModalFigureSettingsMaintenance.copyAsDialog.okWidgetCaption,
 				nameCheckCallback: function (srcName, destName, nameAsDialog) {
 
 					if (0 <= MKR.SettingUtil.indexOfNamedFigureOptionByName(namedFigureOptionListWork, destName)) {
-						var alertDialog = new MKR.Dialog.ModalAlert(dialogManager, "同名の作図設定があります。別の名前を付けてください。");
+						var alertDialog = new MKR.Dialog.ModalAlert(dialogManager, MKR.Lang.Dialog.ModalFigureSettingsMaintenance.copyAsDialog.sameNameExistsMessage);
 						alertDialog.showModal();
 					} else {
 						nameAsDialog.nameOk(destName);
@@ -243,7 +243,7 @@ MKR.Dialog.ModalFigureSettingsMaintenance = MKR.Dialog.ModalBase.extend({
 		});
 
 
-		MKR.Dialog.ModalBase.prototype.initialize.call(this, dialogManager, "mkr_figure_settings_maintenance_dialog", "作図設定の管理", dialogBodyWgt, {
+		MKR.Dialog.ModalBase.prototype.initialize.call(this, dialogManager, "mkr_figure_settings_maintenance_dialog", MKR.Lang.Dialog.ModalFigureSettingsMaintenance.dialogTitle, dialogBodyWgt, {
 			resizable: true,
 			minHeight: this.initialHeight,
 			minWidth: this.initialWidth,

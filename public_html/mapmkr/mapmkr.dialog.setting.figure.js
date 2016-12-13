@@ -51,17 +51,17 @@ MKR.Dialog.ModalSettingsBase = MKR.Dialog.ModalBase.extend({
 		$.each(this.options.buttons, function (index, buttonType) {
 			switch (buttonType) {
 			case "save":
-				dialogFooterWgt.append("<button type='button' class='btn btn-success mkr_save'>保存</button>");
+				dialogFooterWgt.append("<button type='button' class='btn btn-success mkr_save'>" + MKR.Lang.Dialog.ModalSettingsBase.saveButtonCaption + "</button>");
 				break;
 			case "saveDefault":
-				dialogFooterWgt.append("<button type='button' class='btn btn-success mkr_save_default'>既定に設定</button>");
+				dialogFooterWgt.append("<button type='button' class='btn btn-success mkr_save_default'>" + MKR.Lang.Dialog.ModalSettingsBase.saveDefaultButtonCaption + "</button>");
 				break;
 			case "saveAs":
-				dialogFooterWgt.append("<button type='button' class='btn btn-default mkr_save_as'>名前を付けて保存</button>");
+				dialogFooterWgt.append("<button type='button' class='btn btn-default mkr_save_as'>" + MKR.Lang.Dialog.ModalSettingsBase.saveAsButtonCaption + "</button>");
 				break;
 			}
 		});
-		dialogFooterWgt.append("<button type='button' class='btn btn-default mkr_cancel'>キャンセル</button>");
+		dialogFooterWgt.append("<button type='button' class='btn btn-default mkr_cancel'>" + MKR.Lang.Dialog.ModalSettingsBase.cancelButtonCaption + "</button>");
 
 		//
 		// イベント
@@ -83,8 +83,8 @@ MKR.Dialog.ModalSettingsBase = MKR.Dialog.ModalBase.extend({
 		dialogBodyWgt.find(".mkr_save_as").on("click", function (event) {
 
 			var nameAsDialogOptions = {
-				dialogTitle: "名前を付けて保存",
-				okWidgetCaption: "保存",
+				dialogTitle: MKR.Lang.Dialog.ModalSettingsBase.saveAsDialog.dialogTitle,
+				okWidgetCaption: MKR.Lang.Dialog.ModalSettingsBase.saveAsDialog.okWidgetCaption,
 				nameCheckCallback: self.options.nameCheckCallback
 			};
 
@@ -169,26 +169,26 @@ MKR.Dialog.ModalMarkerSettings = MKR.Dialog.ModalSettingsBase.extend({
 				"<div class='form-horizontal'>" +
 
 					"<div class='form-group'>" +
-						"<label class='col-xs-3 control-label mkr_required'>アイコン</label>" +
+						"<label class='col-xs-3 control-label mkr_required'>" + MKR.Lang.Dialog.ModalMarkerSettings.iconLabel + "</label>" +
 						"<div class='col-xs-9'>" +
 
 							"<div class='btn-group mkr_marker_icon_pane'>" +
-								"<span class='btn mkr_marker_icon_column' title='選択されているアイコン'><img src='' class='mkr_marker_icon mkr_marker_icon_current' /></span>" +
+								"<span class='btn mkr_marker_icon_column' title='" + MKR.Lang.Dialog.ModalMarkerSettings.selectedIconTitle + "'><img src='' class='mkr_marker_icon mkr_marker_icon_current' /></span>" +
 
-								"<button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' title='アイコンを選択'>" +
+								"<button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' title='" + MKR.Lang.Dialog.ModalMarkerSettings.selectIconButtonTitle + "'>" +
 									"<span class='caret'></span>" +
 								"</button>" +
 								"<div class='dropdown-menu mkr_scrollable_menu mkr_marker_icon_list'>" +
 								"</div>" +
 							"</div>" +
-							"<button type='button' class='btn btn-default mkr_icon_import' title='アイコンを設定'><i class='fa fa-folder-open-o' aria-hidden='true'></i></button>" +
+							"<button type='button' class='btn btn-default mkr_icon_import' title='" + MKR.Lang.Dialog.ModalMarkerSettings.setIconButtonTitle + "'><i class='fa fa-folder-open-o' aria-hidden='true'></i></button>" +
 						"</div>" +
 					"</div>" +
 
 					"<div class='form-group'>" +
-						"<label class='col-xs-3 control-label mkr_required'>拡大率</label>" +
+						"<label class='col-xs-3 control-label mkr_required'>" + MKR.Lang.Dialog.ModalMarkerSettings.markerSizeLabel + "</label>" +
 						"<div class='col-xs-9'>" +
-							"<select class='form-control mkr_marker_size' title='拡大率を選択'>" +
+							"<select class='form-control mkr_marker_size' title='" + MKR.Lang.Dialog.ModalMarkerSettings.selectSizeTitle + "'>" +
 								"<option value='10'>0.5</option>" +
 								"<option value='20'>1.0</option>" +
 								"<option value='30'>1.5</option>" +
@@ -260,7 +260,7 @@ MKR.Dialog.ModalMarkerSettings = MKR.Dialog.ModalSettingsBase.extend({
 		});
 
 
-		MKR.Dialog.ModalSettingsBase.prototype.initialize.call(this, dialogManager, "mkr_marker_settings_dialog", "マーカー（アイコン）の設定", dialogBodyWgt, MKR.FigureType.Marker, figureOption, this.options);
+		MKR.Dialog.ModalSettingsBase.prototype.initialize.call(this, dialogManager, "mkr_marker_settings_dialog", MKR.Lang.Dialog.ModalMarkerSettings.dialogTitle, dialogBodyWgt, MKR.FigureType.Marker, figureOption, this.options);
 	},
 
 	//
@@ -326,13 +326,13 @@ MKR.Dialog.ModalImportIconImage = MKR.Dialog.ModalBase.extend({
 						"</div>" +
 						"<div class='col-xs-offset-4 col-xs-8'>" +
 							"<div class='mkr_url_description'>" +
-								"大きさが 20 × 20 の画像を指定してください。" +
+								MKR.Lang.Dialog.ModalImportIconImage.iconSizeDescription +
 							"</div>" +
 						"</div>" +
 					"</div>" +
 
 					"<div class='form-group mkr_img_file_pane'>" +
-						"<label class='col-xs-4 control-label'>ファイルから取込み</label>" +
+						"<label class='col-xs-4 control-label'>" + MKR.Lang.Dialog.ModalImportIconImage.loadImageFileLabel + "</label>" +
 						"<div class='col-xs-8'>" +
 							"<input type='file' class='mkr_img_file_name' />" +
 						"</div>" +
@@ -347,7 +347,7 @@ MKR.Dialog.ModalImportIconImage = MKR.Dialog.ModalBase.extend({
 
 				"<div class='mkr_dialog_footer'>" +
 					"<button type='button' class='btn btn-success mkr_ok'>OK</button>" +
-					"<button type='button' class='btn btn-default mkr_cancel'>キャンセル</button>" +
+					"<button type='button' class='btn btn-default mkr_cancel'>" + MKR.Lang.Dialog.ModalImportIconImage.cancelButtonCaption + "</button>" +
 				"</div>" +
 
 			"</div>" +
@@ -358,14 +358,14 @@ MKR.Dialog.ModalImportIconImage = MKR.Dialog.ModalBase.extend({
 		var imgFilenameWgt = dialogBodyWgt.find(".mkr_img_file_name");
 
 		imgFilenameWgt.fileinput({
-			language: "ja",
+			language: MKR.Lang.lang,
 
 			browseClass: "btn btn-default",
 			browseLabel: "",
 
 			removeLabel: "",
 			removeIcon: "<i class='glyphicon glyphicon-remove'></i>",
-			removeTitle: "ファイル選択を取り消します",
+			removeTitle: MKR.Lang.Dialog.ModalImportIconImage.fileinput.removeTitle,
 
 			showPreview: false,
 			showUpload: false,
@@ -396,7 +396,7 @@ MKR.Dialog.ModalImportIconImage = MKR.Dialog.ModalBase.extend({
 
 			var files = imgFilenameWgt.prop("files");
 			if (!files || files.length <= 0) {
-				imgFilenamePopover.showError("ファイルを取得できません");
+				imgFilenamePopover.showError(MKR.Lang.Dialog.ModalImportIconImage.loadFileErrorMessage);
 				return;
 			}
 
@@ -408,11 +408,11 @@ MKR.Dialog.ModalImportIconImage = MKR.Dialog.ModalBase.extend({
 					urlWgt.val(dataUrl);
 					imgFilenamePopover.hide();
 				} else {
-					imgFilenamePopover.showError("ファイルの形式が違います");
+					imgFilenamePopover.showError(MKR.Lang.Dialog.ModalImportIconImage.fileFormatErrorMessage);
 				}
 			};
 			fileReader.onerror = function(event) {
-				imgFilenamePopover.showError("読み込みに失敗しました");
+				imgFilenamePopover.showError(MKR.Lang.Dialog.ModalImportIconImage.readFileErrorMessage);
 			};
 			fileReader.readAsDataURL(files[0]);
 		});
@@ -423,13 +423,13 @@ MKR.Dialog.ModalImportIconImage = MKR.Dialog.ModalBase.extend({
 			var url = MKR.WidgetUtil.trimVal(urlWgt);
 
 			if (url === "") {
-				urlPopover.showError("URL を入力してください");
+				urlPopover.showError(MKR.Lang.Dialog.ModalImportIconImage.urlIsEmptyMessage);
 				return;
 			}
 			if (url.indexOf("data:image") === 0 || url.indexOf("http://") === 0 || url.indexOf("https://") === 0) {
 				// OK
 			} else {
-				urlPopover.showError("URL を入力してください");
+				urlPopover.showError(MKR.Lang.Dialog.ModalImportIconImage.urlIsEmptyMessage);
 				return;
 			}
 			urlPopover.hide();
@@ -444,7 +444,7 @@ MKR.Dialog.ModalImportIconImage = MKR.Dialog.ModalBase.extend({
 			self.close();
 		});
 
-		MKR.Dialog.ModalBase.prototype.initialize.call(this, dialogManager, "mkr_import_icon_image_dialog", "アイコンの設定", dialogBodyWgt, {
+		MKR.Dialog.ModalBase.prototype.initialize.call(this, dialogManager, "mkr_import_icon_image_dialog", MKR.Lang.Dialog.ModalImportIconImage.dialogTitle, dialogBodyWgt, {
 			resizable: false,
 			minWidth: this.minWidth,
 			maxWidth: this.maxWidth
@@ -473,7 +473,7 @@ MKR.Dialog.ModalPolylineSettings = MKR.Dialog.ModalSettingsBase.extend({
 
 	initialHeight: 500,
 
-	initialWidth: 440,
+	initialWidth: MKR.Lang.Dialog.ModalPolylineSettings.initialWidth,
 
 	_polylineWeightWgt: null,
 	_polylineColorPicker: null,
@@ -494,7 +494,7 @@ MKR.Dialog.ModalPolylineSettings = MKR.Dialog.ModalSettingsBase.extend({
 					minHeight: this.initialHeight,
 					minWidth: this.initialWidth,
 					maxHeight: Math.min(this.initialHeight + 200, 550),
-					maxWidth: Math.min(this.initialWidth + 200, 500)
+					maxWidth: Math.min(this.initialWidth + 200, MKR.Lang.Dialog.ModalPolylineSettings.maxWidth)
 				}
 			}, options);
 
@@ -504,9 +504,9 @@ MKR.Dialog.ModalPolylineSettings = MKR.Dialog.ModalSettingsBase.extend({
 				"<div class='form-horizontal'>" +
 
 					"<div class='form-group'>" +
-						"<label class='col-xs-4 control-label mkr_required'>線幅</label>" +
+						"<label class='col-xs-4 control-label mkr_required'>" + MKR.Lang.Dialog.ModalPolylineSettings.lineWidthLabel + "</label>" +
 						"<div class='col-xs-8'>" +
-							"<select class='form-control mkr_polyline_weight' title='線幅を選択'>" +
+							"<select class='form-control mkr_polyline_weight' title='" + MKR.Lang.Dialog.ModalPolylineSettings.selectLineWidthTitle + "'>" +
 								"<option value='1'>1px</option>" +
 								"<option value='3'>3px</option>" +
 								"<option value='5'>5px</option>" +
@@ -518,24 +518,24 @@ MKR.Dialog.ModalPolylineSettings = MKR.Dialog.ModalSettingsBase.extend({
 					"</div>" +
 
 					"<div class='form-group'>" +
-						"<label class='col-xs-4 control-label mkr_required'>線色</label>" +
+						"<label class='col-xs-4 control-label mkr_required'>" + MKR.Lang.Dialog.ModalPolylineSettings.lineColorLabel + "</label>" +
 						"<div class='col-xs-8'>" +
 							"<div class='input-group colorpicker-component mkr_polyline_color_pane'>" +
-								"<input type='text' class='form-control mkr_polyline_color' placeholder='例:red' title='線の色を入力'  />" +
-								"<span class='input-group-addon' title='線の色を選択'><i></i></span>" +
+								"<input type='text' class='form-control mkr_polyline_color' placeholder='" + MKR.Lang.Dialog.ModalPolylineSettings.lineColorExample + "' title='" + MKR.Lang.Dialog.ModalPolylineSettings.inputLineColorTitle + "'  />" +
+								"<span class='input-group-addon' title='" + MKR.Lang.Dialog.ModalPolylineSettings.selectLineColorTitle + "'><i></i></span>" +
 							"</div>" +
 						"</div>" +
 					"</div>" +
 
 					"<div class='form-group'>" +
-						"<label class='col-xs-4 control-label mkr_required'>線の透過率</label>" +
+						"<label class='col-xs-4 control-label mkr_required'>" + MKR.Lang.Dialog.ModalPolylineSettings.lineOpacityLabel + "</label>" +
 						"<div class='col-xs-2'>" +
 							"<div class='form-control-static'>" +
 								"<span class='mkr_polyline_opacity_value'></span><span>%</span>" +
 							"</div>" +
 						"</div>" +
 						"<div class='col-xs-6'>" +
-							"<div class='form-control-static mkr_polyline_opacity_pane' title='線の透過率を選択'>" +
+							"<div class='form-control-static mkr_polyline_opacity_pane' title='" + MKR.Lang.Dialog.ModalPolylineSettings.selectLineOpacityTitle + "'>" +
 								"<div class='mkr_polyline_opacity'></div>" +
 							"</div>" +
 						"</div>" +
@@ -577,7 +577,7 @@ MKR.Dialog.ModalPolylineSettings = MKR.Dialog.ModalSettingsBase.extend({
 		// 線の透過率
 		this._polylineOpacitySlider = new MKR.Widget.OpacitySlider(dialogBodyWgt.find(".mkr_polyline_opacity"), dialogBodyWgt.find(".mkr_polyline_opacity_value"), figureOption.draw.shapeOptions.opacity);
 
-		MKR.Dialog.ModalSettingsBase.prototype.initialize.call(this, dialogManager, "mkr_polyline_settings_dialog", "線の設定", dialogBodyWgt, MKR.FigureType.Polyline, figureOption, this.options);
+		MKR.Dialog.ModalSettingsBase.prototype.initialize.call(this, dialogManager, "mkr_polyline_settings_dialog", MKR.Lang.Dialog.ModalPolylineSettings.dialogTitle, dialogBodyWgt, MKR.FigureType.Polyline, figureOption, this.options);
 	},
 
 	//
@@ -611,7 +611,7 @@ MKR.Dialog.ModalPolygonSettings = MKR.Dialog.ModalSettingsBase.extend({
 
 	initialHeight: 600,
 
-	initialWidth: 440,
+	initialWidth: MKR.Lang.Dialog.ModalPolygonSettings.initialWidth,
 
 	_polylineWeightWgt: null,
 	_polylineColorPicker: null,
@@ -635,7 +635,7 @@ MKR.Dialog.ModalPolygonSettings = MKR.Dialog.ModalSettingsBase.extend({
 					minHeight: this.initialHeight,
 					minWidth: this.initialWidth,
 					maxHeight: Math.min(this.initialHeight + 200, 650),
-					maxWidth: Math.min(this.initialWidth + 200, 500)
+					maxWidth: Math.min(this.initialWidth + 200, MKR.Lang.Dialog.ModalPolygonSettings.maxWidth)
 				}
 			}, options);
 
@@ -645,9 +645,9 @@ MKR.Dialog.ModalPolygonSettings = MKR.Dialog.ModalSettingsBase.extend({
 				"<div class='form-horizontal'>" +
 
 					"<div class='form-group'>" +
-						"<label class='col-xs-4 control-label mkr_required'>線幅</label>" +
+						"<label class='col-xs-4 control-label mkr_required'>" + MKR.Lang.Dialog.ModalPolygonSettings.lineWidthLabel + "</label>" +
 						"<div class='col-xs-8'>" +
-							"<select class='form-control mkr_polyline_weight' title='線幅を選択'>" +
+							"<select class='form-control mkr_polyline_weight' title='" + MKR.Lang.Dialog.ModalPolygonSettings.selectLineWidthTitle + "'>" +
 								"<option value='1'>1px</option>" +
 								"<option value='3'>3px</option>" +
 								"<option value='5'>5px</option>" +
@@ -659,48 +659,48 @@ MKR.Dialog.ModalPolygonSettings = MKR.Dialog.ModalSettingsBase.extend({
 					"</div>" +
 
 					"<div class='form-group'>" +
-						"<label class='col-xs-4 control-label mkr_required'>線色</label>" +
+						"<label class='col-xs-4 control-label mkr_required'>" + MKR.Lang.Dialog.ModalPolygonSettings.lineColorLabel + "</label>" +
 						"<div class='col-xs-8'>" +
 							"<div class='input-group colorpicker-component mkr_polyline_color_pane'>" +
-								"<input type='text' class='form-control mkr_polyline_color' placeholder='例:red' title='線の色を入力' />" +
-								"<span class='input-group-addon' title='線の色を選択'><i></i></span>" +
+								"<input type='text' class='form-control mkr_polyline_color' placeholder='" + MKR.Lang.Dialog.ModalPolygonSettings.lineColorExample + "' title='" + MKR.Lang.Dialog.ModalPolygonSettings.inputLineColorTitle + "' />" +
+								"<span class='input-group-addon' title='" + MKR.Lang.Dialog.ModalPolygonSettings.selectLineColorTitle + "'><i></i></span>" +
 							"</div>" +
 						"</div>" +
 					"</div>" +
 
 					"<div class='form-group'>" +
-						"<label class='col-xs-4 control-label mkr_required'>線の透過率</label>" +
+						"<label class='col-xs-4 control-label mkr_required'>" + MKR.Lang.Dialog.ModalPolygonSettings.lineOpacityLabel + "</label>" +
 						"<div class='col-xs-2'>" +
 							"<div class='form-control-static'>" +
 								"<span class='mkr_polyline_opacity_value'></span><span>%</span>" +
 							"</div>" +
 						"</div>" +
 						"<div class='col-xs-6'>" +
-							"<div class='form-control-static mkr_polyline_opacity_pane' title='線の透過率を選択'>" +
+							"<div class='form-control-static mkr_polyline_opacity_pane' title='" + MKR.Lang.Dialog.ModalPolygonSettings.selectLineOpacityTitle + "'>" +
 								"<div class='mkr_polyline_opacity'></div>" +
 							"</div>" +
 						"</div>" +
 					"</div>" +
 
 					"<div class='form-group'>" +
-						"<label class='col-xs-4 control-label mkr_required'>塗潰し色</label>" +
+						"<label class='col-xs-4 control-label mkr_required'>" + MKR.Lang.Dialog.ModalPolygonSettings.fillColorLabel + "</label>" +
 						"<div class='col-xs-8'>" +
 							"<div class='input-group colorpicker-component mkr_polyfill_color_pane'>" +
-								"<input type='text' class='form-control mkr_polyfill_color' placeholder='例:blue' title='塗潰し色を入力' />" +
-								"<span class='input-group-addon' title='塗潰し色を選択'><i></i></span>" +
+								"<input type='text' class='form-control mkr_polyfill_color' placeholder='" + MKR.Lang.Dialog.ModalPolygonSettings.fillColorExample + "' title='" + MKR.Lang.Dialog.ModalPolygonSettings.inputFillColorTitle + "' />" +
+								"<span class='input-group-addon' title='" + MKR.Lang.Dialog.ModalPolygonSettings.selectFillColorTitle + "'><i></i></span>" +
 							"</div>" +
 						"</div>" +
 					"</div>" +
 
 					"<div class='form-group'>" +
-						"<label class='col-xs-4 control-label mkr_required'>塗潰し透過率</label>" +
+						"<label class='col-xs-4 control-label mkr_required'>" + MKR.Lang.Dialog.ModalPolygonSettings.fillOpacityLabel + "</label>" +
 						"<div class='col-xs-2'>" +
 							"<div class='form-control-static'>" +
 								"<span class='mkr_polyfill_opacity_value'></span><span>%</span>" +
 							"</div>" +
 						"</div>" +
 						"<div class='col-xs-6'>" +
-							"<div class='form-control-static mkr_polyline_opacity_pane' title='塗潰しの透過率を選択'>" +
+							"<div class='form-control-static mkr_polyline_opacity_pane' title='" + MKR.Lang.Dialog.ModalPolygonSettings.selectFillOpacityTitle + "'>" +
 								"<div class='mkr_polyfill_opacity'></div>" +
 							"</div>" +
 						"</div>" +
@@ -761,7 +761,7 @@ MKR.Dialog.ModalPolygonSettings = MKR.Dialog.ModalSettingsBase.extend({
 	//
 
 	callBaseInitialize: function (dialogManager, dialogBodyWgt, figureOption) {
-		MKR.Dialog.ModalSettingsBase.prototype.initialize.call(this, dialogManager, "mkr_polygon_settings_dialog", "ポリゴンの設定", dialogBodyWgt, MKR.FigureType.Polygon, figureOption, this.options);
+		MKR.Dialog.ModalSettingsBase.prototype.initialize.call(this, dialogManager, "mkr_polygon_settings_dialog", MKR.Lang.Dialog.ModalPolygonSettings.dialogTitle, dialogBodyWgt, MKR.FigureType.Polygon, figureOption, this.options);
 	},
 
 	//
@@ -800,7 +800,7 @@ MKR.Dialog.ModalCircleSettings = MKR.Dialog.ModalPolygonSettings.extend({
 	//
 
 	callBaseInitialize: function (dialogManager, dialogBodyWgt, figureOption) {
-		MKR.Dialog.ModalSettingsBase.prototype.initialize.call(this, dialogManager, "mkr_circle_settings_dialog", "円の設定", dialogBodyWgt, MKR.FigureType.Circle, figureOption, this.options);
+		MKR.Dialog.ModalSettingsBase.prototype.initialize.call(this, dialogManager, "mkr_circle_settings_dialog", MKR.Lang.Dialog.ModalCircleSettings.dialogTitle, dialogBodyWgt, MKR.FigureType.Circle, figureOption, this.options);
 	}
 
 });
@@ -817,7 +817,7 @@ MKR.Dialog.ModalCircleMarkerSettings = MKR.Dialog.ModalPolygonSettings.extend({
 	//
 
 	callBaseInitialize: function (dialogManager, dialogBodyWgt, figureOption) {
-		MKR.Dialog.ModalSettingsBase.prototype.initialize.call(this, dialogManager, "mkr_circle_marker_settings_dialog", "マーカー（円）の設定", dialogBodyWgt, MKR.FigureType.CircleMarker, figureOption, this.options);
+		MKR.Dialog.ModalSettingsBase.prototype.initialize.call(this, dialogManager, "mkr_circle_marker_settings_dialog", MKR.Lang.Dialog.ModalCircleMarkerSettings.dialogTitle, dialogBodyWgt, MKR.FigureType.CircleMarker, figureOption, this.options);
 	}
 
 });
@@ -857,8 +857,8 @@ MKR.Dialog.ModalDivIconMarkerSettings = MKR.Dialog.ModalSettingsBase.extend({
 			"<div>" +
 
 				"<div class='form-group'>" +
-					"<label class='control-label mkr_required'>表示するHTMLを入力してください</label>" +
-					"<textarea class='form-control mkr_html' placeholder='例1:動物園　\n例2:&lt;span style=&quot;background-color:#00ffff; color:red; font-size:20px;&quot;&gt;図書館&lt;/span&gt;' title='表示するHTML'></textarea>" +
+					"<label class='control-label mkr_required'>" + MKR.Lang.Dialog.ModalDivIconMarkerSettings.htmlLabel + "</label>" +
+					"<textarea class='form-control mkr_html' placeholder='" + MKR.Lang.Dialog.ModalDivIconMarkerSettings.htmlExample + "' title='" + MKR.Lang.Dialog.ModalDivIconMarkerSettings.htmlTitle + "'></textarea>" +
 				"</div>" +
 
 				"<div class='mkr_figure_info_pane'>" +
@@ -879,7 +879,7 @@ MKR.Dialog.ModalDivIconMarkerSettings = MKR.Dialog.ModalSettingsBase.extend({
 		// HTML
 		dialogBodyWgt.find(".mkr_html").val(figureOption.draw.icon.getHtml());
 
-		MKR.Dialog.ModalSettingsBase.prototype.initialize.call(this, dialogManager, "mkr_div_icon_marker_settings_dialog", "テキストの設定", dialogBodyWgt, MKR.FigureType.DivIconMarker, figureOption, this.options);
+		MKR.Dialog.ModalSettingsBase.prototype.initialize.call(this, dialogManager, "mkr_div_icon_marker_settings_dialog", MKR.Lang.Dialog.ModalDivIconMarkerSettings.dialogTitle, dialogBodyWgt, MKR.FigureType.DivIconMarker, figureOption, this.options);
 	},
 
 	//
@@ -913,9 +913,9 @@ MKR.Dialog.Pane.FigureInfo = L.Class.extend({
 
 	_figureInfoWgt: null,
 
-	_figureTypeToText: "自由文入力に切替",
+	_figureTypeToText: MKR.Lang.Dialog.Pane.FigureInfo.figureTypeToText,
 
-	_figureTypeToTable: "テーブル入力に切替",
+	_figureTypeToTable: MKR.Lang.Dialog.Pane.FigureInfo.figureTypeToTable,
 
 	//
 	// 初期化処理
@@ -933,29 +933,29 @@ MKR.Dialog.Pane.FigureInfo = L.Class.extend({
 				"<div class='form-horizontal'>" +
 
 					"<div class='form-group'>" +
-						"<label class='col-xs-2 control-label'>名称</label>" +
+						"<label class='col-xs-2 control-label'>" + MKR.Lang.Dialog.Pane.FigureInfo.nameLabel + "</label>" +
 						"<div class='col-xs-10'>" +
-							"<input type='text' class='form-control mkr_figure_info_name' placeholder='例:A図書館' title='ポップアップ表示のタイトル' />" +
+							"<input type='text' class='form-control mkr_figure_info_name' placeholder='" + MKR.Lang.Dialog.Pane.FigureInfo.nameExample + "' title='" + MKR.Lang.Dialog.Pane.FigureInfo.inputNameTitle + "' />" +
 						"</div>" +
 					"</div>" +
 
 					"<div class='mkr_switch_figure_info_type_pane'>" +
-						"<a href='" + MKR.Const.JSVoid + "' class='pull-left mkr_switch_figure_info_type' title='内容の入力方法を切り替え'></a>" +
-						"<a href='" + MKR.Const.JSVoid + "' class='pull-right mkr_open_info_text_editor' title='自由文入力のエディタを開く'>エディタを開く</a>" +
+						"<a href='" + MKR.Const.JSVoid + "' class='pull-left mkr_switch_figure_info_type' title='" + MKR.Lang.Dialog.Pane.FigureInfo.toggleInputMethodTitle + "'></a>" +
+						"<a href='" + MKR.Const.JSVoid + "' class='pull-right mkr_open_info_text_editor' title='" + MKR.Lang.Dialog.Pane.FigureInfo.openHtmlEditorTitle + "'>" + MKR.Lang.Dialog.Pane.FigureInfo.openHtmlEditorCaption + "</a>" +
 					"</div>" +
 
 					"<div class='mkr_figure_info_data'>" +
 
 						"<div class='mkr_figure_info_table_pane'>" +
-							"<p class='text-warning mkr_figure_info_table_warn'><i class='fa fa-info-circle' aria-hidden='true'></i>値のみ入力した列は保存されません。</p>" +
-							"<p class='text-warning mkr_figure_info_table_warn'><i class='fa fa-info-circle' aria-hidden='true'></i>項目名に「name」や「description」などの GeoJSON 形式のキー値を入力した場合、ダブルクォート（\"）で囲んで保存されます。</p>" +
+							"<p class='text-warning mkr_figure_info_table_warn'><i class='fa fa-info-circle' aria-hidden='true'></i>" + MKR.Lang.Dialog.Pane.FigureInfo.tablePaneWarn1Label + "</p>" +
+							"<p class='text-warning mkr_figure_info_table_warn'><i class='fa fa-info-circle' aria-hidden='true'></i>" + MKR.Lang.Dialog.Pane.FigureInfo.tablePaneWarn2Label + "</p>" +
 							"<table class='mkr_figure_info_table'>" +
 								"<tr class='form-group'>" +
 									"<td class='mkr_figure_info_key_column'>" +
-										"<label class='control-label'>項目名</label>" +
+										"<label class='control-label'>" + MKR.Lang.Dialog.Pane.FigureInfo.itemNameLabel + "</label>" +
 									"</td>" +
 									"<td>" +
-										"<label class='control-label'>値</label>" +
+										"<label class='control-label'>" + MKR.Lang.Dialog.Pane.FigureInfo.valueLabel + "</label>" +
 									"</td>" +
 									"<td>" +
 									"</td>" +
@@ -965,7 +965,7 @@ MKR.Dialog.Pane.FigureInfo = L.Class.extend({
 							"</table>" +
 						"</div>" +
 
-						"<textarea class='form-control mkr_figure_info_text' placeholder='例1:博物館　\n例2:&lt;span style=&quot;background-color:#00ffff; color:red; font-size:20px;&quot;&gt;公園&lt;/span&gt;' title='ポップアップ表示の内容'></textarea>" +
+						"<textarea class='form-control mkr_figure_info_text' placeholder='" + MKR.Lang.Dialog.Pane.FigureInfo.textExample + "' title='" + MKR.Lang.Dialog.Pane.FigureInfo.textTitle + "'></textarea>" +
 
 					"</div>" +
 
@@ -976,16 +976,16 @@ MKR.Dialog.Pane.FigureInfo = L.Class.extend({
 		var rowTemplate =
 			"<tr class='form-group mkr_figure_info_key_value'>" +
 				"<td class='mkr_figure_info_key_column'>" +
-					"<input type='text' class='form-control mkr_figure_info_key' placeholder='例:営業時間' title='ポップアップ表示の項目名' />" +
+					"<input type='text' class='form-control mkr_figure_info_key' placeholder='" + MKR.Lang.Dialog.Pane.FigureInfo.itemNameExample + "' title='" + MKR.Lang.Dialog.Pane.FigureInfo.itemNameTitle + "' />" +
 				"</td>" +
 				"<td>" +
-					"<input type='text' class='form-control mkr_figure_info_value' placeholder='例:10時～18時' title='ポップアップ表示の項目値' />" +
+					"<input type='text' class='form-control mkr_figure_info_value' placeholder='" + MKR.Lang.Dialog.Pane.FigureInfo.valueExample + "' title='" + MKR.Lang.Dialog.Pane.FigureInfo.valueTitle + "' />" +
 				"</td>" +
 				"<td>" +
-					"<button type='button' class='btn btn-default mkr_figure_info_del_row' title='この行を削除'><i class='fa fa-trash-o' aria-hidden='true'></i></button>" +
+					"<button type='button' class='btn btn-default mkr_figure_info_del_row' title='" + MKR.Lang.Dialog.Pane.FigureInfo.deleteRowTitle + "'><i class='fa fa-trash-o' aria-hidden='true'></i></button>" +
 				"</td>" +
 				"<td>" +
-					"<button type='button' class='btn btn-default mkr_figure_info_add_row' title='この下に行を追加'><img src='images/icon_enter.png' /></button>" +
+					"<button type='button' class='btn btn-default mkr_figure_info_add_row' title='" + MKR.Lang.Dialog.Pane.FigureInfo.addRowTitle + "'><img src='images/icon_enter.png' /></button>" +
 				"</td>" +
 			"</tr>" +
 			"";
@@ -1219,11 +1219,11 @@ MKR.Dialog.ModalInfoTextEditor = MKR.Dialog.ModalBase.extend({
 
 				"<textarea class='mkr_info_text'></textarea>" +
 
-				"<p class='mkr_description'>編集時とポップアップ表示では見た目が一致しないことがあります。</p>" +
+				"<p class='mkr_description'>" + MKR.Lang.Dialog.ModalInfoTextEditor.editorWarnMessage + "</p>" +
 
 				"<div class='mkr_dialog_footer'>" +
-					"<button type='button' class='btn btn-success mkr_save'>設定</button>" +
-					"<button type='button' class='btn btn-default mkr_cancel'>キャンセル</button>" +
+					"<button type='button' class='btn btn-success mkr_save'>" + MKR.Lang.Dialog.ModalInfoTextEditor.saveButtonCaption + "</button>" +
+					"<button type='button' class='btn btn-default mkr_cancel'>" + MKR.Lang.Dialog.ModalInfoTextEditor.cancelButtonCaption + "</button>" +
 				"</div>" +
 
 			"</div>" +
@@ -1240,7 +1240,7 @@ MKR.Dialog.ModalInfoTextEditor = MKR.Dialog.ModalBase.extend({
 		this._infoTextWgt.val(infoText);
 
 		this._infoTextWgt.trumbowyg({
-			lang: "ja",
+			lang: MKR.Lang.lang,
 			semantic: false,
 			resetCss: true,
 
@@ -1273,62 +1273,62 @@ MKR.Dialog.ModalInfoTextEditor = MKR.Dialog.ModalBase.extend({
 					],
 					hasIcon: false,
 					text: "<i class='fa fa-file-code-o'></i>",
-					title: "テンプレートの挿入",
+					title: MKR.Lang.Dialog.ModalInfoTextEditor.insertTemplateTitle,
 				},
 				insertTemplteUnorderedList: {
 					fn: "insertTemplate",
 					hasIcon: false,
-					text: "<i class='fa fa-list-ul' style='margin-right: 14px;'></i>順序なしリスト",
+					text: "<i class='fa fa-list-ul' style='margin-right: 14px;'></i>" + MKR.Lang.Dialog.ModalInfoTextEditor.insertUnorderedListCaption,
 					param: {
-						html: "<div style='width: 300px; word-break: break-all;'><ul><li>リスト１</li><li>リスト２</li><li>リスト３</li></ul></div>"
+						html: MKR.Lang.Dialog.ModalInfoTextEditor.unorderedListHtml
 					}
 				},
 				insertTemplteOrderedList: {
 					fn: "insertTemplate",
 					hasIcon: false,
-					text: "<i class='fa fa-list-ol' style='margin-right: 14px;'></i>順序ありリスト",
+					text: "<i class='fa fa-list-ol' style='margin-right: 14px;'></i>" + MKR.Lang.Dialog.ModalInfoTextEditor.insertOrderedListCaption,
 					param: {
-						html: "<div style='width: 300px; word-break: break-all;'><ol><li>リスト１</li><li>リスト２</li><li>リスト３</li></ol></div>"
+						html: MKR.Lang.Dialog.ModalInfoTextEditor.orderedListHtml
 					}
 				},
 				insertTemplteTitlePlusDesctiption: {
 					fn: "insertTemplate",
 					hasIcon: false,
-					text: "<i class='fa fa-file-text-o' style='margin-right: 14px;'></i>タイトル+説明",
+					text: "<i class='fa fa-file-text-o' style='margin-right: 14px;'></i>" + MKR.Lang.Dialog.ModalInfoTextEditor.insertTitlePlusDesctiptionCaption,
 					param: {
-						html: "<div style='width: 300px; word-break: break-all;'><h3 style='font-weight: bold; font-size: 14px; margin: 0.5em 0;'>タイトル</h3><p style='font-size: 12px; margin: 0;'>説明</p></div>"
+						html: MKR.Lang.Dialog.ModalInfoTextEditor.insertTitlePlusDesctiptionHtml
 					}
 				},
 				insertTemplteTitlePlusDesctiptionPlusImage: {
 					fn: "insertTemplate",
 					hasIcon: false,
-					text: "<i class='fa fa-file-image-o' style='margin-right: 14px;'></i>タイトル+説明+画像",
+					text: "<i class='fa fa-file-image-o' style='margin-right: 14px;'></i>" + MKR.Lang.Dialog.ModalInfoTextEditor.insertTitlePlusDesctiptionPlusImageCaption,
 					param: {
-						html: "<div style='width: 300px; word-break: break-all;'><h3 style='font-weight: bold; font-size: 14px; margin: 0.5em 0;'>タイトル</h3><p style='font-size: 12px; margin: 0.2em 0;'>説明</p><div><img src='images/template_no_image.png?v=" + MKR.version + "' style='width: 100%; height: auto;'/></div></div>"
+						html: MKR.Lang.Dialog.ModalInfoTextEditor.insertTitlePlusDesctiptionPlusImageHtml
 					}
 				},
 				insertTemplteTitlePlusImage: {
 					fn: "insertTemplate",
 					hasIcon: false,
-					text: "<i class='fa fa-file-image-o' style='margin-right: 14px;'></i>タイトル+画像",
+					text: "<i class='fa fa-file-image-o' style='margin-right: 14px;'></i>" + MKR.Lang.Dialog.ModalInfoTextEditor.insertTitlePlusImageCaption,
 					param: {
-						html: "<div style='width: 300px; word-break: break-all;'><h3 style='font-weight: bold; font-size: 14px; margin: 0.5em 0;'>タイトル</h3><div><img src='images/template_no_image.png?v=" + MKR.version + "' style='width: 100%; height: auto;'/></div></div>"
+						html: MKR.Lang.Dialog.ModalInfoTextEditor.insertTitlePlusImageHtml
 					}
 				},
 				insertTemplteTitlePlusImagePlusDesctiption: {
 					fn: "insertTemplate",
 					hasIcon: false,
-					text: "<i class='fa fa-file-image-o' style='margin-right: 14px;'></i>タイトル+画像+説明",
+					text: "<i class='fa fa-file-image-o' style='margin-right: 14px;'></i>" + MKR.Lang.Dialog.ModalInfoTextEditor.insertTitlePlusImagePlusDesctiptionCaption,
 					param: {
-						html: "<div style='width: 300px; word-break: break-all;'><h3 style='font-weight: bold; font-size: 14px; margin: 0.5em 0;'>タイトル</h3><div><img src='images/template_no_image.png?v=" + MKR.version + "' style='width: 100%; height: auto;'/></div><p style='font-size: 12px; margin: 0.2em 0;'>説明</p></div>"
+						html: MKR.Lang.Dialog.ModalInfoTextEditor.insertTitlePlusImagePlusDesctiptionHtml
 					}
 				},
 				insertTemplteTitlePlusImageAndDesctiption: {
 					fn: "insertTemplate",
 					hasIcon: false,
-					text: "<i class='fa fa-file-image-o' style='margin-right: 14px;'></i>タイトル+画像&amp;説明",
+					text: "<i class='fa fa-file-image-o' style='margin-right: 14px;'></i>" + MKR.Lang.Dialog.ModalInfoTextEditor.insertTitlePlusImageAndDesctiptionCaption,
 					param: {
-						html: "<div style='width: 300px; word-break: break-all;'><h3 style='font-weight: bold; font-size: 14px; margin: 0.5em 0;'>タイトル</h3><div><img src='images/template_no_image.png?v=" + MKR.version + "' style='width: 50%; height: auto; float: left; margin-right: 0.5em;'/><div style='font-size: 12px; margin: 0;'>説明</div></div><div style='clear: both;'></div></div>"
+						html: MKR.Lang.Dialog.ModalInfoTextEditor.insertTitlePlusImageAndDesctiptionHtml
 					}
 				}
 			},
@@ -1354,7 +1354,7 @@ MKR.Dialog.ModalInfoTextEditor = MKR.Dialog.ModalBase.extend({
 		});
 
 
-		MKR.Dialog.ModalBase.prototype.initialize.call(this, dialogManager, "mkr_info_text_editor_dialog", "自由文入力エディタ", dialogBodyWgt, {
+		MKR.Dialog.ModalBase.prototype.initialize.call(this, dialogManager, "mkr_info_text_editor_dialog", MKR.Lang.Dialog.ModalInfoTextEditor.dialogTitle, dialogBodyWgt, {
 			resizable: false,
 			minWidth: this.options.minWidth,
 			maxWidth: this.options.maxWidth

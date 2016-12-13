@@ -41,43 +41,43 @@ MKR.Dialog.Construction = MKR.Dialog.Base.extend({
 
 					"<div class='mkr_figure_edit'>" +
 						"<div class='btn-group btn-group-sm' role='group'>" +
-							"<button type='button' class='btn btn-default mkr_begin_edit_figure' title='現在のレイヤ上の図形を編集' data-edit-type='" + MKR.EditType.Edit + "'><i class='fa fa-edit' aria-hidden='true'></i></button>" +
-							"<button type='button' class='btn btn-default mkr_begin_setting_figure' title='現在のレイヤ上の図形の作図設定を編集' data-edit-type='" + MKR.EditType.Setting + "'><i class='fa fa-cog' aria-hidden='true'></i></button>" +
-							"<button type='button' class='btn btn-default mkr_begin_delete_figure' title='現在のレイヤ上の図形を削除' data-edit-type='" + MKR.EditType.Delete + "'><i class='fa fa-trash-o' aria-hidden='true'></i></button>" +
+							"<button type='button' class='btn btn-default mkr_begin_edit_figure' title='" + MKR.Lang.Dialog.Construction.beginEditFigureTitle + "' data-edit-type='" + MKR.EditType.Edit + "'><i class='fa fa-edit' aria-hidden='true'></i></button>" +
+							"<button type='button' class='btn btn-default mkr_begin_setting_figure' title='" + MKR.Lang.Dialog.Construction.beginSettingFigureTitle + "' data-edit-type='" + MKR.EditType.Setting + "'><i class='fa fa-cog' aria-hidden='true'></i></button>" +
+							"<button type='button' class='btn btn-default mkr_begin_delete_figure' title='" + MKR.Lang.Dialog.Construction.beginDeleteFigureTitle + "' data-edit-type='" + MKR.EditType.Delete + "'><i class='fa fa-trash-o' aria-hidden='true'></i></button>" +
 						"</div>" +
 					"</div>" +
 
 					"<div class='mkr_layer_visible_operation'>" +
 						"<div class='btn-group btn-group-sm' role='group'>" +
-							"<button type='button' class='btn btn-default mkr_show_layer_operation' title='レイヤ操作部を表示' data-edit-type='" + MKR.EditType.Edit + "'><i class='fa fa-chevron-down' aria-hidden='true'></i></button>" +
-							"<button type='button' class='btn btn-default mkr_hide_layer_operation' title='レイヤ操作部を非表示' data-edit-type='" + MKR.EditType.Edit + "'><i class='fa fa-chevron-up' aria-hidden='true'></i></button>" +
+							"<button type='button' class='btn btn-default mkr_show_layer_operation' title='" + MKR.Lang.Dialog.Construction.showLayerOperationTitle + "' data-edit-type='" + MKR.EditType.Edit + "'><i class='fa fa-chevron-down' aria-hidden='true'></i></button>" +
+							"<button type='button' class='btn btn-default mkr_hide_layer_operation' title='" + MKR.Lang.Dialog.Construction.hideLayerOperationTitle + "' data-edit-type='" + MKR.EditType.Edit + "'><i class='fa fa-chevron-up' aria-hidden='true'></i></button>" +
 						"</div>" +
 					"</div>" +
 
 					"<div class='mkr_file_operation'>" +
 						"<div class='btn-group btn-group-sm' role='group'>" +
-							"<button type='button' class='btn btn-default mkr_load_layer' title='ファイルから読み込み'><i class='fa fa-folder-open-o' aria-hidden='true'></i></button>" +
-							"<button type='button' class='btn btn-default dropdown-toggle mkr_selector' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' title='処理を選択'>" +
+							"<button type='button' class='btn btn-default mkr_load_layer' title='" + MKR.Lang.Dialog.Construction.loadLayerFromFileTitle + "'><i class='fa fa-folder-open-o' aria-hidden='true'></i></button>" +
+							"<button type='button' class='btn btn-default dropdown-toggle mkr_selector' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' title='" + MKR.Lang.Dialog.Construction.selectOperationTitle + "'>" +
 								"<span class='caret'></span>" +
 							"</button>" +
 							"<ul class='dropdown-menu mkr_scrollable_menu'>" +
-								"<li><a href='" + MKR.Const.JSVoid + "' class='mkr_load_layer'><i class='fa fa-folder-open-o' aria-hidden='true'></i>ファイルから読み込み</a></li>" +
+								"<li><a href='" + MKR.Const.JSVoid + "' class='mkr_load_layer'><i class='fa fa-folder-open-o' aria-hidden='true'></i>" + MKR.Lang.Dialog.Construction.loadLayerFromFileTitle + "</a></li>" +
 								"<li role='separator' class='divider'></li>" +
-								"<li><a href='" + MKR.Const.JSVoid + "' class='mkr_clear_layers'><i class='fa fa-times-circle' aria-hidden='true'></i>すべての図形を削除</a></li>" +
+								"<li><a href='" + MKR.Const.JSVoid + "' class='mkr_clear_layers'><i class='fa fa-times-circle' aria-hidden='true'></i>" + MKR.Lang.Dialog.Construction.clearAllLayersTitle + "</a></li>" +
 							"</ul>" +
 						"</div>" +
 
 						"<div class='btn-group btn-group-sm' role='group'>" +
-							"<button type='button' class='btn btn-default mkr_save_layer_browser' title='ブラウザへ保存'><i class='fa fa-download' aria-hidden='true'></i></button>" +
+							"<button type='button' class='btn btn-default mkr_save_layer_browser' title='" + MKR.Lang.Dialog.Construction.saveToBrowserTitle + "'><i class='fa fa-download' aria-hidden='true'></i></button>" +
 
-							"<button type='button' class='btn btn-default dropdown-toggle mkr_selector' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' title='処理を選択'>" +
+							"<button type='button' class='btn btn-default dropdown-toggle mkr_selector' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' title='" + MKR.Lang.Dialog.Construction.selectOperationTitle + "'>" +
 								"<span class='caret'></span>" +
 							"</button>" +
 
 							"<ul class='dropdown-menu mkr_scrollable_menu'>" +
-								"<li><a href='" + MKR.Const.JSVoid + "' class='mkr_save_layer_browser'><i class='fa fa-download' aria-hidden='true'></i>ブラウザへ保存</a></li>" +
+								"<li><a href='" + MKR.Const.JSVoid + "' class='mkr_save_layer_browser'><i class='fa fa-download' aria-hidden='true'></i>" + MKR.Lang.Dialog.Construction.saveToBrowserTitle + "</a></li>" +
 								"<li role='separator' class='divider'></li>" +
-								"<li><a href='" + MKR.Const.JSVoid + "' class='mkr_save_layer'><i class='fa fa-save' aria-hidden='true'></i>ファイルへ保存</a></li>" +
+								"<li><a href='" + MKR.Const.JSVoid + "' class='mkr_save_layer'><i class='fa fa-save' aria-hidden='true'></i>" + MKR.Lang.Dialog.Construction.saveToFileTitle + "</a></li>" +
 							"</ul>" +
 
 						"</div>" +
@@ -93,16 +93,16 @@ MKR.Dialog.Construction = MKR.Dialog.Base.extend({
 
 					"<div class='mkr_construct_pane'>" +
 						"<div class='btn-group btn-group-sm' role='group'>" +
-							"<button type='button' class='btn btn-success mkr_end_figure' title='確定'><i class='fa fa-thumbs-o-up' aria-hidden='true'></i></button>" +
-							"<button type='button' class='btn btn-warning mkr_delete_last_point' title='最終点を削除'><i class='fa fa-eraser' aria-hidden='true'></i></button>" +
-							"<button type='button' class='btn btn-danger mkr_cancel_figure' title='キャンセル'><i class='fa fa-times' aria-hidden='true'></i></button>" +
+							"<button type='button' class='btn btn-success mkr_end_figure' title='" + MKR.Lang.Dialog.Construction.finishDrawTitle + "'><i class='fa fa-thumbs-o-up' aria-hidden='true'></i></button>" +
+							"<button type='button' class='btn btn-warning mkr_delete_last_point' title='" + MKR.Lang.Dialog.Construction.deleteLastPointTitle + "'><i class='fa fa-eraser' aria-hidden='true'></i></button>" +
+							"<button type='button' class='btn btn-danger mkr_cancel_figure' title='" + MKR.Lang.Dialog.Construction.cancelDrawTitle + "'><i class='fa fa-times' aria-hidden='true'></i></button>" +
 						"</div>" +
 					"</div>" +
 
 					"<div class='mkr_edit_pane'>" +
 						"<div class='btn-group btn-group-sm' role='group'>" +
-							"<button type='button' class='btn btn-success mkr_save_edit' title='確定'><i class='fa fa-thumbs-o-up' aria-hidden='true'></i></button>" +
-							"<button type='button' class='btn btn-danger mkr_cancel_edit' title='キャンセル'><i class='fa fa-times' aria-hidden='true'></i></button>" +
+							"<button type='button' class='btn btn-success mkr_save_edit' title='" + MKR.Lang.Dialog.Construction.saveEditTitle + "'><i class='fa fa-thumbs-o-up' aria-hidden='true'></i></button>" +
+							"<button type='button' class='btn btn-danger mkr_cancel_edit' title='" + MKR.Lang.Dialog.Construction.cancelEditTitle + "'><i class='fa fa-times' aria-hidden='true'></i></button>" +
 						"</div>" +
 					"</div>" +
 
@@ -114,7 +114,7 @@ MKR.Dialog.Construction = MKR.Dialog.Base.extend({
 
 					"<div class='mkr_layer_operation'>" +
 						"<div class='btn-group btn-group-sm' role='group'>" +
-							"<button type='button' class='btn btn-default mkr_new_layer' title='新しいレイヤを作成'><i class='fa fa-file-o' aria-hidden='true'></i></button>" +
+							"<button type='button' class='btn btn-default mkr_new_layer' title='" + MKR.Lang.Dialog.Construction.addNewLayerTitle + "'><i class='fa fa-file-o' aria-hidden='true'></i></button>" +
 						"</div>" +
 					"</div>" +
 
@@ -136,16 +136,16 @@ MKR.Dialog.Construction = MKR.Dialog.Base.extend({
 		var figureGroupTemplate =
 			"<div class='btn-group btn-group-sm mkr_figure_group' data-figure-type=''>" +
 				"<button type='button' class='btn btn-default mkr_begin_figure' title=''><img src='' /></button>" +
-				"<button type='button' class='btn btn-default dropdown-toggle mkr_selector' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' title='処理を選択'>" +
+				"<button type='button' class='btn btn-default dropdown-toggle mkr_selector' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' title='" + MKR.Lang.Dialog.Construction.selectOperationTitle + "'>" +
 					"<span class='caret'></span>" +
 				"</button>" +
 				"<ul class='dropdown-menu mkr_scrollable_menu'>" +
 					"<li><a href='" + MKR.Const.JSVoid + "' class='mkr_begin_figure mkr_figure_default'></a></li>" +
 					"<li role='separator' class='divider mkr_divider'></li>" +
-					"<li><a href='" + MKR.Const.JSVoid + "' class='mkr_setting_figure'><i class='fa fa-cog' aria-hidden='true'></i>作図設定</a></li>" +
-					"<li class='mkr_setting_figure_list_container'><a href='" + MKR.Const.JSVoid + "' class='mkr_setting_figure_list'><i class='fa fa-list' aria-hidden='true'></i>作図設定の管理</a></li>" +
+					"<li><a href='" + MKR.Const.JSVoid + "' class='mkr_setting_figure'><i class='fa fa-cog' aria-hidden='true'></i>" + MKR.Lang.Dialog.Construction.figureSettingCaption + "</a></li>" +
+					"<li class='mkr_setting_figure_list_container'><a href='" + MKR.Const.JSVoid + "' class='mkr_setting_figure_list'><i class='fa fa-list' aria-hidden='true'></i>" + MKR.Lang.Dialog.Construction.maintenanceFigureSettingCaption + "</a></li>" +
 					"<li role='separator' class='divider'></li>" +
-					"<li><a href='" + MKR.Const.JSVoid + "' class='mkr_draw_repeat' data-draw-repeat=''><i class='' aria-hidden='true'></i>作図の繰り返し</a></li>" +
+					"<li><a href='" + MKR.Const.JSVoid + "' class='mkr_draw_repeat' data-draw-repeat=''><i class='' aria-hidden='true'></i>" + MKR.Lang.Dialog.Construction.repeatDrawingCaption + "</a></li>" +
 				"</ul>" +
 			"</div>" +
 			"";
@@ -153,32 +153,32 @@ MKR.Dialog.Construction = MKR.Dialog.Base.extend({
 		var figureGroupTemplateParams = [
 			{
 				figureType: MKR.FigureType.Marker,
-				title: "現在のレイヤにマーカー（アイコン）を追加",
+				title: MKR.Lang.Dialog.Construction.addMarkerTitle,
 				icon: "images/icon_marker.png"
 			},
 			{
 				figureType: MKR.FigureType.CircleMarker,
-				title: "現在のレイヤにマーカー（円）を追加",
+				title: MKR.Lang.Dialog.Construction.addCircleMarkerTitle,
 				icon: "images/icon_circle_marker.png"
 			},
 			{
 				figureType: MKR.FigureType.Polyline,
-				title: "現在のレイヤに線を追加",
+				title: MKR.Lang.Dialog.Construction.addPolylineTitle,
 				icon: "images/icon_polyline.png"
 			},
 			{
 				figureType: MKR.FigureType.Polygon,
-				title: "現在のレイヤにポリゴンを追加",
+				title: MKR.Lang.Dialog.Construction.addPolygonTitle,
 				icon: "images/icon_polygon.png"
 			},
 			{
 				figureType: MKR.FigureType.Circle,
-				title: "現在のレイヤに円を追加",
+				title: MKR.Lang.Dialog.Construction.addCircleTitle,
 				icon: "images/icon_circle.png"
 			},
 			{
 				figureType: MKR.FigureType.DivIconMarker,
-				title: "現在のレイヤにテキストを追加",
+				title: MKR.Lang.Dialog.Construction.addDivIconMarkerTitle,
 				icon: "images/icon_div_icon_marker.png"
 			}
 		];
@@ -194,11 +194,11 @@ MKR.Dialog.Construction = MKR.Dialog.Base.extend({
 
 				"<div class='mkr_layer_edit'>" +
 					"<div class='btn-group btn-group-sm' role='group'>" +
-						"<button type='button' class='btn btn-default mkr_select_layer' title='このレイヤを選択'><i class='fa fa-mouse-pointer' aria-hidden='true'></i></button>" +
-						"<button type='button' class='btn btn-default mkr_layer_to_foreground' title='レイヤを前面に移動'><i class='fa fa-arrow-up' aria-hidden='true'></i></button>" +
-						"<button type='button' class='btn btn-default mkr_layer_to_background' title='レイヤを背面に移動'><i class='fa fa-arrow-down' aria-hidden='true'></i></button>" +
-						"<button type='button' class='btn btn-default mkr_rename_layer' title='レイヤの名前を変更'><i class='fa fa-edit' aria-hidden='true'></i></button>" +
-						"<button type='button' class='btn btn-default mkr_remove_layer' title='レイヤを削除'><i class='fa fa-trash-o' aria-hidden='true'></i></button>" +
+						"<button type='button' class='btn btn-default mkr_select_layer' title='" + MKR.Lang.Dialog.Construction.selectLayerTitle + "'><i class='fa fa-mouse-pointer' aria-hidden='true'></i></button>" +
+						"<button type='button' class='btn btn-default mkr_layer_to_foreground' title='" + MKR.Lang.Dialog.Construction.moveLayerForwardTitle + "'><i class='fa fa-arrow-up' aria-hidden='true'></i></button>" +
+						"<button type='button' class='btn btn-default mkr_layer_to_background' title='" + MKR.Lang.Dialog.Construction.moveLayerBackwardTitle + "'><i class='fa fa-arrow-down' aria-hidden='true'></i></button>" +
+						"<button type='button' class='btn btn-default mkr_rename_layer' title='" + MKR.Lang.Dialog.Construction.renameLayerTitle + "'><i class='fa fa-edit' aria-hidden='true'></i></button>" +
+						"<button type='button' class='btn btn-default mkr_remove_layer' title='" + MKR.Lang.Dialog.Construction.deleteLayerTitle + "'><i class='fa fa-trash-o' aria-hidden='true'></i></button>" +
 					"</div>" +
 				"</div>" +
 
@@ -239,7 +239,7 @@ MKR.Dialog.Construction = MKR.Dialog.Base.extend({
 			var figureDefaultWgt = figureGroupWgt.find(".mkr_figure_default");
 			figureDefaultWgt
 				.append(iconWgt)
-				.append("既定");
+				.append(MKR.Lang.Dialog.Construction.figureDefaultTitle);
 
 			return figureGroupWgt;
 		}
@@ -419,7 +419,7 @@ MKR.Dialog.Construction = MKR.Dialog.Base.extend({
 		// 作図設定名チェック用のコールバック
 		function figureSettingNameCheckCallback(srcName, destName, nameAsDialog, namedFigureOptionList) {
 			if (0 <= MKR.SettingUtil.indexOfNamedFigureOptionByName(namedFigureOptionList, destName)) {
-				var yesNoDialog = new MKR.Dialog.ModalYesNo(dialogManager, "同名の作図設定があります。上書き保存しますか？");
+				var yesNoDialog = new MKR.Dialog.ModalYesNo(dialogManager, MKR.Lang.Dialog.Construction.sameNameExistsCaption);
 				yesNoDialog.on("mkrDialog:yes", function (event) {
 					nameAsDialog.nameOk(destName);
 				});
@@ -440,7 +440,7 @@ MKR.Dialog.Construction = MKR.Dialog.Base.extend({
 			layerItemWgt.find(".mkr_toggle_layer_visible_pane i")
 				.removeClass("fa fa-eye fa-eye-slash")
 				.addClass((show) ? "fa fa-eye" : "fa fa-eye-slash")
-				.attr("title", (show) ? "レイヤを非表示にします" : "レイヤを表示します");
+				.attr("title", (show) ? MKR.Lang.Dialog.Construction.hideLayerCaption : MKR.Lang.Dialog.Construction.showLayerCaption);
 		}
 
 		// レイヤの表示名とファイル名を設定する
@@ -499,7 +499,7 @@ MKR.Dialog.Construction = MKR.Dialog.Base.extend({
 		function layerNameCheckCallback(index, nameNew, displayNameNew, layerNameAsDialog) {
 
 			if (!layerManager.checkSameName(index, nameNew)) {
-				var alertDialog = new MKR.Dialog.ModalAlert(dialogManager, "同じファイル名があります。別の名前を付けてください。");
+				var alertDialog = new MKR.Dialog.ModalAlert(dialogManager, MKR.Lang.Dialog.Construction.sameFilenameExistsMessage);
 				alertDialog.showModal();
 			} else {
 				layerNameAsDialog.nameOk(nameNew, displayNameNew);
@@ -680,7 +680,7 @@ MKR.Dialog.Construction = MKR.Dialog.Base.extend({
 
 			drawFigure.cancelAll();
 
-			var yesNoDialog = new MKR.Dialog.ModalYesNo(dialogManager, "すべての図形・レイヤを削除します。実行しますか？");
+			var yesNoDialog = new MKR.Dialog.ModalYesNo(dialogManager, MKR.Lang.Dialog.Construction.deleteAllLayersMessage);
 			yesNoDialog.on("mkrDialog:yes", function (event) {
 				layerManager.removeLayers();
 			});
@@ -694,7 +694,7 @@ MKR.Dialog.Construction = MKR.Dialog.Base.extend({
 			drawFigure.cancelAll();
 
 			if (layerManager.getVisibleFiguresCount() <= 0) {
-				var alertDialog = new MKR.Dialog.ModalAlert(dialogManager, "保存できる図形がありません。<div class='mkr_sub_message'>表示中の図形のみ保存します。</div>");
+				var alertDialog = new MKR.Dialog.ModalAlert(dialogManager, MKR.Lang.Dialog.Construction.noLayersMessage);
 				alertDialog.showModal();
 			} else {
 
@@ -716,7 +716,7 @@ MKR.Dialog.Construction = MKR.Dialog.Base.extend({
 
 			layerManager.saveLayersToBrowser(function () {
 				var alertDialog = new MKR.Dialog.ModalAlert(self.getDialogManager(),
-					"ブラウザへの保存に失敗しました。", {
+					MKR.Lang.Dialog.Construction.failedSaveToBrowserMessage, {
 						minWidth: 350,
 						maxWidth: 400
 					});
@@ -815,7 +815,7 @@ MKR.Dialog.Construction = MKR.Dialog.Base.extend({
 			if (layerManager.isLayerVisible(index)) {
 				var rc = layerManager.hideLayer(index);
 				if (!rc) {
-					var alertDialog = new MKR.Dialog.ModalAlert(dialogManager, "選択中のレイヤは非表示にできません。");
+					var alertDialog = new MKR.Dialog.ModalAlert(dialogManager, MKR.Lang.Dialog.Construction.layersCannotBeHiddenMessage);
 					alertDialog.showModal();
 				}
 			} else {
@@ -869,7 +869,7 @@ MKR.Dialog.Construction = MKR.Dialog.Base.extend({
 			var index = getLayerItemIndex(this);
 			var layerInfo = layerManager.getLayerInfo(index);
 			if (layerInfo !== null) {
-				var yesNoDialog = new MKR.Dialog.ModalYesNo(dialogManager, layerInfo.displayName + " を削除してよろしいですか？");
+				var yesNoDialog = new MKR.Dialog.ModalYesNo(dialogManager, MKR.Lang.Dialog.Construction.layerDeleteConfirmationMessageFunction(layerInfo.displayName));
 				yesNoDialog.on("mkrDialog:yes", function (event) {
 					layerManager.removeLayer(index);
 				});
@@ -881,7 +881,7 @@ MKR.Dialog.Construction = MKR.Dialog.Base.extend({
 
 		// ファイルから読み込みでエラー
 		layerManager.on("mkrLayer:loadError", function (event) {
-			var alertDialog = new MKR.Dialog.ModalAlert(dialogManager, "ファイルの読み込みに失敗しました。", {
+			var alertDialog = new MKR.Dialog.ModalAlert(dialogManager, MKR.Lang.Dialog.Construction.failedToReadFileMessage, {
 				minWidth: 350,
 				maxWidth: 400
 			});
@@ -889,7 +889,7 @@ MKR.Dialog.Construction = MKR.Dialog.Base.extend({
 		});
 
 		layerManager.on("mkrLayer:someError", function (event) {
-			var alertDialog = new MKR.Dialog.ModalAlert(dialogManager, "一部のファイルが読み込めませんでした。", {
+			var alertDialog = new MKR.Dialog.ModalAlert(dialogManager, MKR.Lang.Dialog.Construction.someDataCouldNotLoadedMessage, {
 				minWidth: 380,
 				maxWidth: 400
 			});
@@ -898,7 +898,7 @@ MKR.Dialog.Construction = MKR.Dialog.Base.extend({
 
 		// ファイルのダウンロードでエラー
 		layerManager.on("mkrLayer:downloadError", function (event) {
-			var alertDialog = new MKR.Dialog.ModalAlert(dialogManager, "ファイルの保存に失敗しました。", {
+			var alertDialog = new MKR.Dialog.ModalAlert(dialogManager, MKR.Lang.Dialog.Construction.failedToSaveFileMessage, {
 				minWidth: 350,
 				maxWidth: 400
 			});
@@ -982,7 +982,7 @@ MKR.Dialog.Construction = MKR.Dialog.Base.extend({
 		});
 
 
-		MKR.Dialog.Base.prototype.initialize.call(this, dialogManager, "mkr_construction_dialog", "お絵かきマップ", dialogBodyWgt, {
+		MKR.Dialog.Base.prototype.initialize.call(this, dialogManager, "mkr_construction_dialog", MKR.Lang.Dialog.Construction.dialogTitle, dialogBodyWgt, {
 			top: options.top,
 			left: options.left,
 			minHeight: this.initialHeight,
@@ -1040,6 +1040,8 @@ MKR.Dialog.ModalLayerNameAs = MKR.Dialog.ModalBase.extend({
 		nameCheckCallback: function (index, nameNew, displayNameNew, layerNameAsDialog) { layerNameAsDialog.nameOk(nameNew, displayNameNew); }
 	},
 
+	initialWidth: MKR.Lang.Dialog.ModalLayerNameAs.initialWidth,
+
 	//
 	// 初期化処理
 	//----------------------------------------------------------------------
@@ -1057,7 +1059,7 @@ MKR.Dialog.ModalLayerNameAs = MKR.Dialog.ModalBase.extend({
 				"<div class='form-horizontal'>" +
 
 					"<div class='form-group'>" +
-						"<label class='col-xs-3 control-label mkr_required'>表示名</label>" +
+						"<label class='col-xs-3 control-label mkr_required'>" + MKR.Lang.Dialog.ModalLayerNameAs.displayNameLabel + "</label>" +
 						"<div class='col-xs-9'>" +
 							"<input type='text' class='form-control mkr_display_name_as' placeholder='' />" +
 						"</div>" +
@@ -1068,7 +1070,7 @@ MKR.Dialog.ModalLayerNameAs = MKR.Dialog.ModalBase.extend({
 				"<div class='form-horizontal'>" +
 
 					"<div class='form-group'>" +
-						"<label class='col-xs-4 control-label mkr_required'>ファイル名</label>" +
+						"<label class='col-xs-4 control-label mkr_required'>" + MKR.Lang.Dialog.ModalLayerNameAs.filenameLabel + "</label>" +
 						"<div class='col-xs-8'>" +
 							"<input type='text' class='form-control mkr_name_as' placeholder='' />" +
 						"</div>" +
@@ -1077,8 +1079,8 @@ MKR.Dialog.ModalLayerNameAs = MKR.Dialog.ModalBase.extend({
 				"</div>" +
 
 				"<div class='mkr_dialog_footer'>" +
-					"<button type='button' class='btn btn-success mkr_rename'>変更</button>" +
-					"<button type='button' class='btn btn-default mkr_cancel'>キャンセル</button>" +
+					"<button type='button' class='btn btn-success mkr_rename'>" + MKR.Lang.Dialog.ModalLayerNameAs.renameButtonCaption + "</button>" +
+					"<button type='button' class='btn btn-default mkr_cancel'>" + MKR.Lang.Dialog.ModalLayerNameAs.cancelButtonCaption + "</button>" +
 				"</div>" +
 
 			"</div>" +
@@ -1107,18 +1109,18 @@ MKR.Dialog.ModalLayerNameAs = MKR.Dialog.ModalBase.extend({
 
 			var displayNameAs = MKR.WidgetUtil.trimVal(displayNameAsWgt);
 			if (displayNameAs === "") {
-				displayNameAsPopover.showError("表示名を入力してください");
+				displayNameAsPopover.showError(MKR.Lang.Dialog.ModalLayerNameAs.displayNameIsEmptyMessage);
 				return;
 			}
 			displayNameAsPopover.hide();
 
 			var nameAs = MKR.WidgetUtil.trimVal(nameAsWgt);
 			if (nameAs === "") {
-				nameAsPopover.showError("ファイル名を入力してください");
+				nameAsPopover.showError(MKR.Lang.Dialog.ModalLayerNameAs.filenameIsEmptyMessage);
 				return;
 			}
 			if (!nameAs.match(/^[a-zA-Z0-9_]+$/)) {
-				nameAsPopover.showError("ファイル名には半角の英数文字とアンダースコア（_）のみ入力できます");
+				nameAsPopover.showError(MKR.Lang.Dialog.ModalLayerNameAs.invalidFilenameMessage);
 				return;
 			}
 			nameAsPopover.hide();
@@ -1132,8 +1134,10 @@ MKR.Dialog.ModalLayerNameAs = MKR.Dialog.ModalBase.extend({
 			self.close();
 		});
 
-		MKR.Dialog.ModalBase.prototype.initialize.call(this, dialogManager, "mkr_layer_name_as_dialog", "レイヤの名前を変更", dialogBodyWgt, {
-			resizable: false
+		MKR.Dialog.ModalBase.prototype.initialize.call(this, dialogManager, "mkr_layer_name_as_dialog", MKR.Lang.Dialog.ModalLayerNameAs.dialogTitle, dialogBodyWgt, {
+			resizable: false,
+			minWidth: this.initialWidth,
+			maxWidth: Math.min(this.initialWidth + 200, 600)
 		});
 	},
 
@@ -1178,12 +1182,12 @@ MKR.Dialog.ModalSaveLayer = MKR.Dialog.ModalBase.extend({
 		var dialogBodyTemplate =
 			"<div>" +
 
-				"<p class='mkr_description'>表示中の図形のみ保存します。</p>" +
+				"<p class='mkr_description'>" + MKR.Lang.Dialog.ModalSaveLayer.saveDescription + "</p>" +
 
 				"<div class='form-horizontal'>" +
 
 					"<div class='form-group'>" +
-						"<label class='col-xs-4 control-label mkr_required'>ZIP ファイル名</label>" +
+						"<label class='col-xs-4 control-label mkr_required'>" + MKR.Lang.Dialog.ModalSaveLayer.filenameLabel + "</label>" +
 						"<div class='col-xs-8'>" +
 							"<input type='text' class='form-control mkr_save_file_name' placeholder='' />" +
 						"</div>" +
@@ -1192,14 +1196,14 @@ MKR.Dialog.ModalSaveLayer = MKR.Dialog.ModalBase.extend({
 				"</div>" +
 
 				"<div class='checkbox'>" +
-					"<label title='ZIP ファイルに Web サーバで公開するために必要なファイルを含める場合はチェック'>" +
-						"<input type='checkbox' class='mkr_include_publish_files' /><span class='mkr_include_publish_files_caption'>公開に必要なファイルを含める</span>" +
+					"<label title='" + MKR.Lang.Dialog.ModalSaveLayer.includePublishFilesTitle + "'>" +
+						"<input type='checkbox' class='mkr_include_publish_files' /><span class='mkr_include_publish_files_caption'>" + MKR.Lang.Dialog.ModalSaveLayer.includePublishFilesLabel + "</span>" +
 					"</label>" +
 				"</div>" +
 
 				"<div class='mkr_dialog_footer'>" +
-					"<button type='button' class='btn btn-success mkr_save'>保存</button>" +
-					"<button type='button' class='btn btn-default mkr_cancel'>キャンセル</button>" +
+					"<button type='button' class='btn btn-success mkr_save'>" + MKR.Lang.Dialog.ModalSaveLayer.saveButtonCaption + "</button>" +
+					"<button type='button' class='btn btn-default mkr_cancel'>" + MKR.Lang.Dialog.ModalSaveLayer.cancelButtonCaption + "</button>" +
 				"</div>" +
 
 			"</div>" +
@@ -1227,11 +1231,11 @@ MKR.Dialog.ModalSaveLayer = MKR.Dialog.ModalBase.extend({
 
 			var saveFilename = MKR.WidgetUtil.trimVal(saveFilenameWgt);
 			if (saveFilename === "") {
-				saveFilenamePopover.showError("ZIP ファイル名を入力してください");
+				saveFilenamePopover.showError(MKR.Lang.Dialog.ModalSaveLayer.filenameIsEmptyMessage);
 				return;
 			}
 			if (!saveFilename.match(/^[a-zA-Z0-9_]+$/)) {
-				saveFilenamePopover.showError("ZIP ファイル名には半角の英数文字とアンダースコア（_）のみ入力できます");
+				saveFilenamePopover.showError(MKR.Lang.Dialog.ModalSaveLayer.invalidFilenameMessage);
 				return;
 			}
 
@@ -1258,7 +1262,7 @@ MKR.Dialog.ModalSaveLayer = MKR.Dialog.ModalBase.extend({
 			self.close();
 		});
 
-		MKR.Dialog.ModalBase.prototype.initialize.call(this, dialogManager, "mkr_save_layer_dialog", "保存", dialogBodyWgt, {
+		MKR.Dialog.ModalBase.prototype.initialize.call(this, dialogManager, "mkr_save_layer_dialog", MKR.Lang.Dialog.ModalSaveLayer.dialogTitle, dialogBodyWgt, {
 			resizable: false
 		});
 	},
@@ -1283,7 +1287,7 @@ MKR.Dialog.ModalPublishInfo = MKR.Dialog.ModalBase.extend({
 	includes: L.Mixin.Events,
 
 	dialogOptions: {
-		saveButtonCaption: "保存"
+		saveButtonCaption: MKR.Lang.Dialog.ModalPublishInfo.saveButtonCaption
 	},
 
 	mapOptions: {
@@ -1309,7 +1313,7 @@ MKR.Dialog.ModalPublishInfo = MKR.Dialog.ModalBase.extend({
 				"<div class='form-horizontal'>" +
 
 					"<div class='form-group'>" +
-						"<label class='col-xs-4 control-label mkr_required'>マップ名</label>" +
+						"<label class='col-xs-4 control-label mkr_required'>" + MKR.Lang.Dialog.ModalPublishInfo.mapNameLabel + "</label>" +
 						"<div class='col-xs-8'>" +
 							"<input type='text' class='form-control mkr_map_name' placeholder='' />" +
 						"</div>" +
@@ -1320,9 +1324,9 @@ MKR.Dialog.ModalPublishInfo = MKR.Dialog.ModalBase.extend({
 				"<div class='form-horizontal'>" +
 
 					"<div class='form-group'>" +
-						"<label class='col-xs-4 control-label mkr_required'>初期表示地図</label>" +
+						"<label class='col-xs-4 control-label mkr_required'>" + MKR.Lang.Dialog.ModalPublishInfo.initialMapLabel + "</label>" +
 						"<div class='col-xs-8'>" +
-							"<select class='form-control mkr_initial_map_tile' title='初期表示する地図を選択'>" +
+							"<select class='form-control mkr_initial_map_tile' title='" + MKR.Lang.Dialog.ModalPublishInfo.selectInitialMapTitle + "'>" +
 							"</select>" +
 						"</div>" +
 					"</div>" +
@@ -1332,7 +1336,7 @@ MKR.Dialog.ModalPublishInfo = MKR.Dialog.ModalBase.extend({
 				"<div class='form-horizontal mkr_map_tiles_pane'>" +
 
 					"<div class='form-group'>" +
-						"<label class='col-xs-4 control-label mkr_required'>表示地図</label>" +
+						"<label class='col-xs-4 control-label mkr_required'>" + MKR.Lang.Dialog.ModalPublishInfo.displayMapsLabel + "</label>" +
 						"<div class='col-xs-8 mkr_map_tiles'>" +
 						"</div>" +
 					"</div>" +
@@ -1341,7 +1345,7 @@ MKR.Dialog.ModalPublishInfo = MKR.Dialog.ModalBase.extend({
 
 				"<div class='mkr_dialog_footer'>" +
 					"<button type='button' class='btn btn-success mkr_save'></button>" +
-					"<button type='button' class='btn btn-default mkr_cancel'>キャンセル</button>" +
+					"<button type='button' class='btn btn-default mkr_cancel'>" + MKR.Lang.Dialog.ModalPublishInfo.cancelButtonCaption + "</button>" +
 				"</div>" +
 
 			"</div>" +
@@ -1349,7 +1353,7 @@ MKR.Dialog.ModalPublishInfo = MKR.Dialog.ModalBase.extend({
 
 		var mapTileTemplate =
 			"<div class='checkbox'>" +
-				"<label title='表示する地図をチェック'>" +
+				"<label title='" + MKR.Lang.Dialog.ModalPublishInfo.selectDisplayMapsTitle + "'>" +
 					"<input type='checkbox' class='mkr_map_tile' data-map-name='' /><span class='mkr_map_tile_caption'></span>" +
 				"</label>" +
 			"</div>" +
@@ -1451,7 +1455,7 @@ MKR.Dialog.ModalPublishInfo = MKR.Dialog.ModalBase.extend({
 
 			var mapName = MKR.WidgetUtil.trimVal(mapNameWgt);
 			if (mapName === "") {
-				mapNamePopover.showError("マップ名を入力してください");
+				mapNamePopover.showError(MKR.Lang.Dialog.ModalPublishInfo.mapNameIsEmptyMessage);
 				return;
 			}
 			mapNamePopover.hide();
@@ -1485,7 +1489,7 @@ MKR.Dialog.ModalPublishInfo = MKR.Dialog.ModalBase.extend({
 			this,
 			dialogManager,
 			"mkr_publish_info",
-			"公開に必要な情報の設定",
+			MKR.Lang.Dialog.ModalPublishInfo.dialogTitle,
 			dialogBodyWgt, {
 				resizable: false
 			});
@@ -1522,12 +1526,12 @@ MKR.Dialog.ModalLoadLayer = MKR.Dialog.ModalBase.extend({
 		var dialogBodyTemplate =
 			"<div>" +
 
-				"<p class='mkr_description'>以前に保存した ZIP ファイルまたは geojson ファイルを指定してください。</p>" +
+				"<p class='mkr_description'>" + MKR.Lang.Dialog.ModalLoadLayer.loadDescription + "</p>" +
 
 				"<div class='form-horizontal'>" +
 
 					"<div class='form-group mkr_load_file_pane'>" +
-						"<label class='col-xs-3 control-label mkr_required'>ファイル名</label>" +
+						"<label class='col-xs-3 control-label mkr_required'>" + MKR.Lang.Dialog.ModalLoadLayer.filenameLabel + "</label>" +
 						"<div class='col-xs-9'>" +
 							"<input type='file' class='mkr_load_file_name' />" +
 						"</div>" +
@@ -1536,14 +1540,14 @@ MKR.Dialog.ModalLoadLayer = MKR.Dialog.ModalBase.extend({
 				"</div>" +
 
 				"<div class='checkbox'>" +
-					"<label title='既存のレイヤをすべて削除し、新たに読み込みを行う場合はチェック'>" +
-						"<input type='checkbox' class='mkr_remove_exists_layer' /><span class='mkr_remove_exists_layer_caption'>既存のレイヤをすべて削除してから読み込む</span>" +
+					"<label title='" + MKR.Lang.Dialog.ModalLoadLayer.removeExistsLayersTitle + "'>" +
+						"<input type='checkbox' class='mkr_remove_exists_layer' /><span class='mkr_remove_exists_layer_caption'>" + MKR.Lang.Dialog.ModalLoadLayer.removeExistsLayersLabel + "</span>" +
 					"</label>" +
 				"</div>" +
 
 				"<div class='mkr_dialog_footer'>" +
-					"<button type='button' class='btn btn-success mkr_load'>読込</button>" +
-					"<button type='button' class='btn btn-default mkr_cancel'>キャンセル</button>" +
+					"<button type='button' class='btn btn-success mkr_load'>" + MKR.Lang.Dialog.ModalLoadLayer.loadButtonCaption + "</button>" +
+					"<button type='button' class='btn btn-default mkr_cancel'>" + MKR.Lang.Dialog.ModalLoadLayer.cancelButtonCaption + "</button>" +
 				"</div>" +
 
 			"</div>" +
@@ -1555,17 +1559,17 @@ MKR.Dialog.ModalLoadLayer = MKR.Dialog.ModalBase.extend({
 
 		// 先に fileinput を適用する
 		loadFilenameWgt.fileinput({
-			language: "ja",
+			language: MKR.Lang.lang,
 
 			allowedFileExtensions: ["zip", "geojson"],
-			msgNoFilesSelected: "zip又はgeojsonファイルを指定下さい",
+			msgNoFilesSelected: MKR.Lang.Dialog.ModalLoadLayer.fileinput.msgNoFilesSelected,
 
 			browseClass: "btn btn-default",
 			browseLabel: "",
 
 			removeLabel: "",
 			removeIcon: "<i class='glyphicon glyphicon-remove'></i>",
-			removeTitle: "ファイル選択を取り消します",
+			removeTitle: MKR.Lang.Dialog.ModalLoadLayer.fileinput.removeTitle,
 
 			showPreview: false,
 			showUpload: false,
@@ -1585,13 +1589,13 @@ MKR.Dialog.ModalLoadLayer = MKR.Dialog.ModalBase.extend({
 			// NOTE: <input type="file"> に対しては val() で値を設定できないので注意
 			var loadFilename = $.trim(loadFilenameWgt.val());
 			if (loadFilename === "") {
-				loadFilenamePopover.showError("ファイルを選択してください");
+				loadFilenamePopover.showError(MKR.Lang.Dialog.ModalLoadLayer.filenameIsEmptyMessage);
 				return;
 			}
 
 			var files = loadFilenameWgt.prop("files");
 			if (!files || files.length <= 0) {
-				loadFilenamePopover.showError("ファイルを取得できません");
+				loadFilenamePopover.showError(MKR.Lang.Dialog.ModalLoadLayer.loadFileErrorMessage);
 				return;
 			}
 
@@ -1599,7 +1603,7 @@ MKR.Dialog.ModalLoadLayer = MKR.Dialog.ModalBase.extend({
 
 			if (removeExistsLayerWgt.prop("checked")) {
 
-				var yesNoDialog = new MKR.Dialog.ModalYesNo(dialogManager, "既存のレイヤはすべて削除されます。読み込みますか？");
+				var yesNoDialog = new MKR.Dialog.ModalYesNo(dialogManager, MKR.Lang.Dialog.ModalLoadLayer.allLayersDeleteMessage);
 				yesNoDialog.on("mkrDialog:yes", function (event) {
 					self.fire("mkrDialog:loadAs", { file: files[0], removeExistsLayer: true });
 					self.close();
@@ -1617,7 +1621,7 @@ MKR.Dialog.ModalLoadLayer = MKR.Dialog.ModalBase.extend({
 			self.close();
 		});
 
-		MKR.Dialog.ModalBase.prototype.initialize.call(this, dialogManager, "mkr_load_layer_dialog", "読み込み", dialogBodyWgt, {
+		MKR.Dialog.ModalBase.prototype.initialize.call(this, dialogManager, "mkr_load_layer_dialog", MKR.Lang.Dialog.ModalLoadLayer.dialogTitle, dialogBodyWgt, {
 			resizable: false,
 			minWidth: 500,
 			maxWidth: 600

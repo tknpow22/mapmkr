@@ -169,7 +169,7 @@ MKR.Widget.ContextMenu = L.Class.extend({
 		figureLayer.bindContextMenu({
 			contextmenuItems: [
 				{
-					text: "<i class='fa fa-cog' aria-hidden='true'></i>作図設定",
+					text: "<i class='fa fa-cog' aria-hidden='true'></i>" + MKR.Lang.Widget.ContextMenu.figureSetting,
 					callback: L.Util.bind(this._setting, this)
 				}
 			]

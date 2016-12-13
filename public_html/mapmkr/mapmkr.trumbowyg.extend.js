@@ -40,12 +40,12 @@ MKR.Trumbowyg.Dialog.ModalInsertImage = MKR.Dialog.ModalBase.extend({
 					"<div class='form-group'>" +
 						"<label class='col-xs-4 control-label mkr_required'>URL</label>" +
 						"<div class='col-xs-8'>" +
-							"<textarea class='form-control mkr_url' placeholder='例:http://www.koutou-software.net/images/kswsLogo.png'></textarea>" +
+							"<textarea class='form-control mkr_url' placeholder='" + MKR.Lang.Trumbowyg.Dialog.ModalInsertImage.urlExample + "'></textarea>" +
 						"</div>" +
 					"</div>" +
 
 					"<div class='form-group mkr_img_file_pane'>" +
-						"<label class='col-xs-4 control-label'>ファイルから取込み</label>" +
+						"<label class='col-xs-4 control-label'>" + MKR.Lang.Trumbowyg.Dialog.ModalInsertImage.loadFromFileLabel + "</label>" +
 						"<div class='col-xs-8'>" +
 							"<input type='file' class='mkr_img_file_name' />" +
 						"</div>" +
@@ -59,16 +59,16 @@ MKR.Trumbowyg.Dialog.ModalInsertImage = MKR.Dialog.ModalBase.extend({
 					"<hr class='mkr_img_file_name_separator' />" +
 
 					"<div class='form-group'>" +
-						"<label class='col-xs-4 control-label'>説明（alt）</label>" +
+						"<label class='col-xs-4 control-label'>" + MKR.Lang.Trumbowyg.Dialog.ModalInsertImage.altLabel + "</label>" +
 						"<div class='col-xs-8'>" +
-							"<input type='text' class='form-control mkr_alt_text' placeholder='例:ロゴ画像' title='画像の説明（alt属性）を指定' />" +
+							"<input type='text' class='form-control mkr_alt_text' placeholder='" + MKR.Lang.Trumbowyg.Dialog.ModalInsertImage.altExample + "' title='" + MKR.Lang.Trumbowyg.Dialog.ModalInsertImage.altTitle + "' />" +
 						"</div>" +
 					"</div>" +
 
 					"<div class='form-group'>" +
-						"<label class='col-xs-4 control-label'>幅（width）</label>" +
+						"<label class='col-xs-4 control-label'>" + MKR.Lang.Trumbowyg.Dialog.ModalInsertImage.widthLabel + "</label>" +
 						"<div class='col-xs-8'>" +
-							"<input type='text' class='form-control mkr_width' placeholder='例:200px' title='画像の幅（widthスタイル）を指定' />" +
+							"<input type='text' class='form-control mkr_width' placeholder='" + MKR.Lang.Trumbowyg.Dialog.ModalInsertImage.widthExample + "' title='" + MKR.Lang.Trumbowyg.Dialog.ModalInsertImage.widthTitle + "' />" +
 						"</div>" +
 					"</div>" +
 
@@ -76,7 +76,7 @@ MKR.Trumbowyg.Dialog.ModalInsertImage = MKR.Dialog.ModalBase.extend({
 
 				"<div class='mkr_dialog_footer'>" +
 					"<button type='button' class='btn btn-success mkr_ok'>OK</button>" +
-					"<button type='button' class='btn btn-default mkr_cancel'>キャンセル</button>" +
+					"<button type='button' class='btn btn-default mkr_cancel'>" + MKR.Lang.Trumbowyg.Dialog.ModalInsertImage.cancelButtonCaption + "</button>" +
 				"</div>" +
 
 			"</div>" +
@@ -89,14 +89,14 @@ MKR.Trumbowyg.Dialog.ModalInsertImage = MKR.Dialog.ModalBase.extend({
 		var widthWgt = dialogBodyWgt.find(".mkr_width");
 
 		imgFilenameWgt.fileinput({
-			language: "ja",
+			language: MKR.Lang.lang,
 
 			browseClass: "btn btn-default",
 			browseLabel: "",
 
 			removeLabel: "",
 			removeIcon: "<i class='glyphicon glyphicon-remove'></i>",
-			removeTitle: "ファイル選択を取り消します",
+			removeTitle: MKR.Lang.Trumbowyg.Dialog.ModalInsertImage.fileinput.removeTitle,
 
 			showPreview: false,
 			showUpload: false,
@@ -129,7 +129,7 @@ MKR.Trumbowyg.Dialog.ModalInsertImage = MKR.Dialog.ModalBase.extend({
 
 			var files = imgFilenameWgt.prop("files");
 			if (!files || files.length <= 0) {
-				imgFilenamePopover.showError("ファイルを取得できません");
+				imgFilenamePopover.showError(MKR.Lang.Trumbowyg.Dialog.ModalInsertImage.loadFileErrorMessage);
 				return;
 			}
 
@@ -141,11 +141,11 @@ MKR.Trumbowyg.Dialog.ModalInsertImage = MKR.Dialog.ModalBase.extend({
 					urlWgt.val(dataUrl);
 					imgFilenamePopover.hide();
 				} else {
-					imgFilenamePopover.showError("ファイルの形式が違います");
+					imgFilenamePopover.showError(MKR.Lang.Trumbowyg.Dialog.ModalInsertImage.invalidFileTypeMessage);
 				}
 			};
 			fileReader.onerror = function(event) {
-				imgFilenamePopover.showError("読み込みに失敗しました");
+				imgFilenamePopover.showError(MKR.Lang.Trumbowyg.Dialog.ModalInsertImage.readFileErrorMessage);
 			};
 			fileReader.readAsDataURL(files[0]);
 		});
@@ -158,13 +158,13 @@ MKR.Trumbowyg.Dialog.ModalInsertImage = MKR.Dialog.ModalBase.extend({
 			var width = MKR.WidgetUtil.trimVal(widthWgt);
 
 			if (url === "") {
-				urlPopover.showError("URL を入力してください");
+				urlPopover.showError(MKR.Lang.Trumbowyg.Dialog.ModalInsertImage.urlIsEmptyMessage);
 				return;
 			}
 			if (url.indexOf("data:image") === 0 || url.indexOf("http://") === 0 || url.indexOf("https://") === 0) {
 				// OK
 			} else {
-				urlPopover.showError("URL を入力してください");
+				urlPopover.showError(MKR.Lang.Trumbowyg.Dialog.ModalInsertImage.urlIsEmptyMessage);
 				return;
 			}
 			urlPopover.hide();
@@ -179,7 +179,7 @@ MKR.Trumbowyg.Dialog.ModalInsertImage = MKR.Dialog.ModalBase.extend({
 			self.close();
 		});
 
-		MKR.Dialog.ModalBase.prototype.initialize.call(this, dialogManager, "mkr_trumbowyg_insert_image_dialog", "画像の挿入", dialogBodyWgt, {
+		MKR.Dialog.ModalBase.prototype.initialize.call(this, dialogManager, "mkr_trumbowyg_insert_image_dialog", MKR.Lang.Trumbowyg.Dialog.ModalInsertImage.dialogTitle, dialogBodyWgt, {
 			resizable: false,
 			minWidth: this.minWidth,
 			maxWidth: this.maxWidth
@@ -231,31 +231,31 @@ MKR.Trumbowyg.Dialog.ModalCreateLink = MKR.Dialog.ModalBase.extend({
 					"<div class='form-group'>" +
 						"<label class='col-xs-4 control-label mkr_required'>URL</label>" +
 						"<div class='col-xs-8'>" +
-							"<textarea class='form-control mkr_url' placeholder='例:http://www.koutou-software.net/main/index.php'></textarea>" +
+							"<textarea class='form-control mkr_url' placeholder='" + MKR.Lang.Trumbowyg.Dialog.ModalCreateLink.urlExample + "'></textarea>" +
 						"</div>" +
 					"</div>" +
 
 					"<div class='form-group'>" +
-						"<label class='col-xs-4 control-label mkr_required'>テキスト</label>" +
+						"<label class='col-xs-4 control-label mkr_required'>" + MKR.Lang.Trumbowyg.Dialog.ModalCreateLink.linkTextLabel + "</label>" +
 						"<div class='col-xs-8'>" +
-							"<input type='text' class='form-control mkr_text' placeholder='例:団体のホームページ' />" +
+							"<input type='text' class='form-control mkr_text' placeholder='" + MKR.Lang.Trumbowyg.Dialog.ModalCreateLink.linkTextExample + "' />" +
 						"</div>" +
 					"</div>" +
 
 					"<div class='form-group'>" +
-						"<label class='col-xs-4 control-label'>タイトル（title）</label>" +
+						"<label class='col-xs-4 control-label'>" + MKR.Lang.Trumbowyg.Dialog.ModalCreateLink.linkTitleLabel + "</label>" +
 						"<div class='col-xs-8'>" +
-							"<input type='text' class='form-control mkr_title' placeholder='例:ホームページへのリンク' title='リンクの説明（title属性）を指定' />" +
+							"<input type='text' class='form-control mkr_title' placeholder='" + MKR.Lang.Trumbowyg.Dialog.ModalCreateLink.linkTitleExample + "' title='" + MKR.Lang.Trumbowyg.Dialog.ModalCreateLink.linkTitleTitle + "' />" +
 						"</div>" +
 					"</div>" +
 
 					"<div class='form-group'>" +
-						"<label class='col-xs-5 control-label'>ターゲット指定（target）</label>" +
+						"<label class='col-xs-5 control-label'>" + MKR.Lang.Trumbowyg.Dialog.ModalCreateLink.linkTargetLabel + "</label>" +
 						"<div class='col-xs-7'>" +
 							"<div class='input-group'>" +
-								"<input type='text' class='form-control mkr_target' placeholder='例:_blank' title='リンク表示時のウィンドウを指定' />" +
+								"<input type='text' class='form-control mkr_target' placeholder='" + MKR.Lang.Trumbowyg.Dialog.ModalCreateLink.linkTargetExample + "' title='" + MKR.Lang.Trumbowyg.Dialog.ModalCreateLink.linkTargetTitle + "' />" +
 								"<div class='input-group-btn mkr_target_selector'>" +
-									"<button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>選択 <span class='caret'></span></button>" +
+									"<button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>" + MKR.Lang.Trumbowyg.Dialog.ModalCreateLink.selectLinkTargetCaption + " <span class='caret'></span></button>" +
 									"<ul class='dropdown-menu dropdown-menu-right'>" +
 										"<li><a href='" + MKR.Const.JSVoid + "'>_blank</a></li>" +
 										"<li><a href='" + MKR.Const.JSVoid + "'>_self</a></li>" +
@@ -271,7 +271,7 @@ MKR.Trumbowyg.Dialog.ModalCreateLink = MKR.Dialog.ModalBase.extend({
 
 				"<div class='mkr_dialog_footer'>" +
 					"<button type='button' class='btn btn-success mkr_ok'>OK</button>" +
-					"<button type='button' class='btn btn-default mkr_cancel'>キャンセル</button>" +
+					"<button type='button' class='btn btn-default mkr_cancel'>" + MKR.Lang.Trumbowyg.Dialog.ModalCreateLink.cancelButtonCaption + "</button>" +
 				"</div>" +
 
 			"</div>" +
@@ -313,19 +313,19 @@ MKR.Trumbowyg.Dialog.ModalCreateLink = MKR.Dialog.ModalBase.extend({
 			var target = MKR.WidgetUtil.trimVal(targetWgt);
 
 			if (url === "") {
-				urlPopover.showError("URL を入力してください");
+				urlPopover.showError(MKR.Lang.Trumbowyg.Dialog.ModalCreateLink.urlIsEmptyMessage);
 				return;
 			}
 			if (url.indexOf("http://") === 0 || url.indexOf("https://") === 0) {
 				// OK
 			} else {
-				urlPopover.showError("URL を入力してください");
+				urlPopover.showError(MKR.Lang.Trumbowyg.Dialog.ModalCreateLink.urlIsEmptyMessage);
 				return;
 			}
 			urlPopover.hide();
 
 			if (text === "") {
-				textPopover.showError("テキストを入力してください");
+				textPopover.showError(MKR.Lang.Trumbowyg.Dialog.ModalCreateLink.textIsEmptyMessage);
 				return;
 			}
 			textPopover.hide();
@@ -341,7 +341,7 @@ MKR.Trumbowyg.Dialog.ModalCreateLink = MKR.Dialog.ModalBase.extend({
 			self.close();
 		});
 
-		MKR.Dialog.ModalBase.prototype.initialize.call(this, dialogManager, "mkr_trumbowyg_create_link_dialog", "リンクの作成", dialogBodyWgt, {
+		MKR.Dialog.ModalBase.prototype.initialize.call(this, dialogManager, "mkr_trumbowyg_create_link_dialog", MKR.Lang.Trumbowyg.Dialog.ModalCreateLink.dialogTitle, dialogBodyWgt, {
 			resizable: false,
 			minWidth: this.minWidth,
 			maxWidth: this.maxWidth

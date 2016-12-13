@@ -223,7 +223,7 @@ MKR.DivIcon = L.DivIcon.extend({
 		html = $.trim(this.options.htmlValue);
 
 		if (html === "") {
-			this.options.html = "<span class='mkr_notext'>[未設定]</span>";
+			this.options.html = "<span class='mkr_notext'>" + MKR.Lang.DivIcon.notSet + "</span>";
 		} else {
 			this.options.html = html;
 		}

@@ -61,12 +61,28 @@ MKR.LayerManager = L.Class.extend({
 
 	// 公開用ファイル
 	// NOTE: 公開用ファイルは必ず UTF-8 で保存しておくこと
-	_publishFilesVersion: "1.0.0",
+	_publishFilesVersion: "1.0.1",
 	_publishFiles: [
-		"index.html",
-		"gsimaps.css",
-		"viewmap.css",
-		"viewmap.js"
+		{
+			src: "index_" + MKR.Lang.lang + ".html",
+			dest: "index.html"
+		},
+		{
+			src: "gsimaps.css",
+			dest: "gsimaps.css"
+		},
+		{
+			src: "viewmap.css",
+			dest: "viewmap.css"
+		},
+		{
+			src: "viewmap.lang_" + MKR.Lang.lang + ".js",
+			dest: "viewmap.lang_" + MKR.Lang.lang + ".js"
+		},
+		{
+			src: "viewmap.js",
+			dest: "viewmap.js"
+		}
 	],
 
 	_figureDataStorageKey: "figureData",
@@ -483,8 +499,9 @@ MKR.LayerManager = L.Class.extend({
 			if (includePublishFiles) {
 
 				var loaders = [];
-				$.each(this._publishFiles, function (index, filename) {
-					var loader = MKR.Ajax.fetchFile("bundle/" + filename + "?v=" + this._publishFilesVersion);
+				$.each(this._publishFiles, function (index, publishFile) {
+					var filename = publishFile.src;
+					var loader = MKR.Ajax.fetchFile("bundle/" + filename + "?v=" + self._publishFilesVersion);
 					loaders.push(loader);
 				});
 
@@ -501,7 +518,7 @@ MKR.LayerManager = L.Class.extend({
 							return false;	// break;
 						}
 
-						var publishFilename = self._publishFiles[index];
+						var publishFilename = self._publishFiles[index].dest;
 
 						var content = loaderResult[0];
 
@@ -1026,7 +1043,7 @@ MKR.LayerManager = L.Class.extend({
 	//
 
 	_getNewLayerDisplayName: function () {
-		return "新規レイヤ_" + String(++this._tempNameNumber);
+		return MKR.Lang.LayerManager.layerNamePrefix + "_" + String(++this._tempNameNumber);
 	},
 
 	//

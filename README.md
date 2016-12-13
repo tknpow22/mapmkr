@@ -2,7 +2,10 @@
 「お絵かきマップ」は、<a href="http://maps.gsi.go.jp/">地理院地図のデータ（地理院タイル）</a>を利用した、マップ用の図形データを作成するための Web サービスです。
 
 ##
-サンプルは <a href="https://tknpow22.github.io/mapmkr/">こちら</a> です。
+サンプルは <a href="https://tknpow22.github.io/mapmkr/">こちら(ja)</a> です。
+
+##
+a exsample is <a href="https://tknpow22.github.io/mapmkr/index_en.html">hire(en)</a>.
 
 ## 
 開発は Google Chrome で行いました。Internet Explorer、Microsoft Edge、Mozilla Firefox、Opera でも簡単な確認はしています。
