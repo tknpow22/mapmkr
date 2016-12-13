@@ -5,7 +5,7 @@
 サンプルは <a href="https://tknpow22.github.io/mapmkr/">こちら(ja)</a> です。
 
 ##
-a exsample is <a href="https://tknpow22.github.io/mapmkr/index_en.html">here(en)</a>.
+a exsample is <a href="https://tknpow22.github.io/mapmkr/index_en.html">here(en)</a>(but Translation is terrible).
 
 ## 
 開発は Google Chrome で行いました。Internet Explorer、Microsoft Edge、Mozilla Firefox、Opera でも簡単な確認はしています。
