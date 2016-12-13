@@ -1,0 +1,27 @@
+/*
+ * viewmap: v.1.0.1
+ * encoding: UTF-8 & LF
+ */
+
+MKR_Lang = {
+
+	lang: "en",
+
+	tileCopyright: "The Geospatial Information Authority of Japan",
+
+	errorTileUrl: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAABPBJREFUeNrt3GtvE0cUBuAXSEIICSaUlqriIvUmPvX//458adWLql6kCigkARJuSdwPGVrj7Nq7ztps4+eRLCW2d2bW9pw9Z3btBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgqV1awn3+ruK+4yTfJzlp+PydBv1cTzJIspFkLcmVkb7eJjlMsp/kYE77lCTDcjtO8q70e5Dkefm/rbUkD2se+6G032Rcbex0MA5qrHgJkjI5byX5u4O21pPcLRO/7jVfKY/fLoHgzySv5xTgLyW5nGS19HkzyRdJ9pL8leSoRXvbUx57tKD3qy/j+N+77CX416cdZEQ3knwzYfJX2Ujyddl2kZnfdpJvk1zrcOKlJwEAGUBrqyVl35tx+40kDyqCyH7JLF6V/6+VI/9gLBA/SPJLyQi6sDOS3awm2Sr9ro69/18m+alB2ny9pN6TyoPrYyXNTouSZafhfs0yDmQAjbOAWd2tmPyPk/xWPown5XZQ7ntccVS+O4d9Oi7lxZMkPyZ5WVH+3DvnUXeRR9++jEMAuEBORo7OWzOm/utj972eUos+qqj71+dcChyX4HNUcVTdnPI5GTRofzDnz1RfxiEAXDDPzpkFDGraHE7YZjjW76S2ug4CTyvuvzklwF2paOe4IpuYZwDryzgEgAvmychk3Uy7hbH39f+4lw22O2jYVtdetOz3VsV9++W2yPS7L+MQAC6Yd/lw8a9tFrBa0+Y0bxu21bU3FfetTdi3qvJgt9zGbc1pH/oyDgHgAmcBo2n42jlfx5MWaw+Lfk/a9LtdE7gOyu1ty3JiVn0ZhwBwQb3O6RVyyemK/O05TaguAsc83veTFhNvt+bvSan6PALAxxiHALAkWcCtnF1wmlRCzJLKz1o6nNfVhuXIRs1zp028qx2vZfRlHBeOC4E+dJDTC3E2SnBsmgUcVnxANzP98t7Nmrbmbathv3ULaQ8bHrG72pe+jEMGsARGL9D5pOE2+zXp56RLiy+lflV73kG/ar/2KsZ3nhr6Zrr5sllfxiEALInn+W+VvGmG9CJnV9bXk9yZsM2dnL146E2qT9F15UpOLzleqch8xk9b3mhRAtX11cW5+L6MQwmwZFnAvRbPHyb5I8lXY0ebz0pp8GSkHFjP6WnGQU0bwzkE+bUyCW5XvOfHpd8mafdekt9r+rlfcaTe7iCj6cs4BIAlspfk87Q7j3xYPpT3x4LAINOv7huWbbusVZt8F/8oya85uwC4UrNO8GxCW88qJt5WaevoHJ/PPoxDCbBkhpnttwH2k/zcciIflm32F7x/uzn9ctCrhnXzu0y+uvFlzp7BmEf9/jHGIQNYQk9LCt+2/nxVJvQifxFo0kR//4tAR2WN4X2/k043Vi1O7jbob7e8ZuNtzfpDK30ZBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC/UPdZ/absZdet4AAAAASUVORK5CYII=",
+
+	mapCenterDefault: [35.362222, 138.731389],
+
+	noTileLayersInfoMessage: "Please specify tile information.",
+	noLayersDataMessage: "Please specify layers data.",
+	createLayersErrorMessage: "Failed to create layers.",
+	readLayersErrorMessage: "Failed to read layers.",
+	fetchLayersErrorMessage: "Failed to fetch layers.",
+
+	mapNameDefault: "Map",
+
+	loadSettingErrorMessage: "Failed to load settings.",
+	readSettingErrorMessage: "Failed to read settings.",
+	fetchSettingErrorMessage: "Failed to fetch settings."
+};

@@ -17,33 +17,33 @@ MKR.Configs = {
 	mapTiles: [
 		{
 			name: "std",
-			displayName: "標準地図",
+			displayName: MKR.Lang.Configs.mapTiles.displayName_std,
 			urlTemplate: "//cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png",
-			errorTileUrl: "images/no-data-blank.png"
+			errorTileUrl: MKR.Lang.Configs.mapTiles.errorTileUrl_std
 		},
 		{
 			name: "pale",
-			displayName: "淡色地図",
+			displayName: MKR.Lang.Configs.mapTiles.displayName_pale,
 			urlTemplate: "//cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png",
-			errorTileUrl: "images/no-data-blank.png"
+			errorTileUrl: MKR.Lang.Configs.mapTiles.errorTileUrl_pale
 		},
 		{
 			name: "blank",
-			displayName: "白地図",
+			displayName: MKR.Lang.Configs.mapTiles.displayName_blank,
 			urlTemplate: "//cyberjapandata.gsi.go.jp/xyz/blank/{z}/{x}/{y}.png",
-			errorTileUrl: "images/no-data-blank.png"
+			errorTileUrl: MKR.Lang.Configs.mapTiles.errorTileUrl_blank
 		},
 		{
 			name: "ort",
-			displayName: "写真",
+			displayName: MKR.Lang.Configs.mapTiles.displayName_ort,
 			urlTemplate: "//cyberjapandata.gsi.go.jp/xyz/ort/{z}/{x}/{y}.jpg",
-			errorTileUrl: "images/no-data-blank.png"
+			errorTileUrl: MKR.Lang.Configs.mapTiles.errorTileUrl_ort
 		},
 		{
 			name: "airphoto",
-			displayName: "簡易空中写真",
+			displayName: MKR.Lang.Configs.mapTiles.displayName_airphoto,
 			urlTemplate: "//cyberjapandata.gsi.go.jp/xyz/airphoto/{z}/{x}/{y}.png",
-			errorTileUrl: "images/no-data-blank.png"
+			errorTileUrl: MKR.Lang.Configs.mapTiles.errorTileUrl_airphoto
 		}
 	],
 

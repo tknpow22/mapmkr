@@ -343,7 +343,7 @@ MKR.Task.UseLH = {
 
 	getLat: function () {
 		var latValue = MKR.LocationHash.getValue("lat");
-		latValue = latValue || 35.362222;
+		latValue = latValue || MKR.Lang.Task.UseLH.latDefalut;
 		var lat = MKR.Number.parseFloat(latValue, 6);
 		return Math.max(-90, Math.min(lat, 90));
 	},
@@ -355,7 +355,7 @@ MKR.Task.UseLH = {
 
 	getLng: function () {
 		var lngValue = MKR.LocationHash.getValue("lng");
-		lngValue = lngValue || 138.731389;
+		lngValue = lngValue || MKR.Lang.Task.UseLH.lngDefalut;
 		var lng = MKR.Number.parseFloat(lngValue, 6);
 		return Math.max(-180, Math.min(lng, 180));
 	},
@@ -478,7 +478,7 @@ MKR.MapManager = L.Class.extend({
 			var mapTile = MKR.Configs.mapTiles[i];
 
 			var tileLayer = L.tileLayer(mapTile.urlTemplate, {
-							attribution: "<a href='//maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル（" + mapTile.displayName + "）</a>",
+							attribution: "<a href='//maps.gsi.go.jp/development/ichiran.html' target='_blank'>" + MKR.Lang.Task.MapManager.tileCopyright + "(" + mapTile.displayName + ")</a>",
 							errorTileUrl: mapTile.errorTileUrl
 						});
 

@@ -581,9 +581,9 @@ MKR.Dialog.ModalNameAs = MKR.Dialog.ModalBase.extend({
 	includes: L.Mixin.Events,
 
 	options: {
-		dialogTitle: "名前を入力",
+		dialogTitle: MKR.Lang.Dialog.ModalNameAs.dialogTitle,
 		srcName: "",
-		okWidgetCaption: "OK",
+		okWidgetCaption: MKR.Lang.Dialog.ModalNameAs.okWidgetCaption,
 		nameCheckCallback: function (srcName, destName, nameAsDialog) { nameAsDialog.nameOk(destName); }
 	},
 
@@ -604,7 +604,7 @@ MKR.Dialog.ModalNameAs = MKR.Dialog.ModalBase.extend({
 				"<div class='form-horizontal'>" +
 
 					"<div class='form-group'>" +
-						"<label class='col-xs-3 control-label mkr_required'>名前</label>" +
+						"<label class='col-xs-3 control-label mkr_required'>" + MKR.Lang.Dialog.ModalNameAs.nameAsLabel + "</label>" +
 						"<div class='col-xs-9'>" +
 							"<input type='text' class='form-control mkr_name_as' placeholder='' />" +
 						"</div>" +
@@ -614,7 +614,7 @@ MKR.Dialog.ModalNameAs = MKR.Dialog.ModalBase.extend({
 
 				"<div class='mkr_dialog_footer'>" +
 					"<button type='button' class='btn btn-success mkr_ok'></button>" +
-					"<button type='button' class='btn btn-default mkr_cancel'>キャンセル</button>" +
+					"<button type='button' class='btn btn-default mkr_cancel'>" + MKR.Lang.Dialog.ModalNameAs.cancelButtonCaption + "</button>" +
 				"</div>" +
 
 			"</div>" +
@@ -642,7 +642,7 @@ MKR.Dialog.ModalNameAs = MKR.Dialog.ModalBase.extend({
 
 			var nameAs = MKR.WidgetUtil.trimVal(nameAsWgt);
 			if (nameAs === "") {
-				nameAsPopover.showError("名前を入力してください");
+				nameAsPopover.showError(MKR.Lang.Dialog.ModalNameAs.nameIsEmptyMessage);
 				return;
 			}
 
@@ -706,8 +706,8 @@ MKR.Dialog.ModalYesNo = MKR.Dialog.ModalBase.extend({
 				"<p class='mkr_message'></p>" +
 
 				"<div class='mkr_dialog_footer'>" +
-					"<button type='button' class='btn btn-success mkr_yes'>はい</button>" +
-					"<button type='button' class='btn btn-default mkr_cancel'>いいえ</button>" +
+					"<button type='button' class='btn btn-success mkr_yes'>" + MKR.Lang.Dialog.ModalYesNo.yesButtonCaption + "</button>" +
+					"<button type='button' class='btn btn-default mkr_cancel'>" + MKR.Lang.Dialog.ModalYesNo.cancelButtonCaption + "</button>" +
 				"</div>" +
 
 			"</div>" +
@@ -737,7 +737,7 @@ MKR.Dialog.ModalYesNo = MKR.Dialog.ModalBase.extend({
 			self.close();
 		});
 
-		MKR.Dialog.ModalBase.prototype.initialize.call(this, dialogManager, "mkr_yes_no_dialog", "確認", dialogBodyWgt, {
+		MKR.Dialog.ModalBase.prototype.initialize.call(this, dialogManager, "mkr_yes_no_dialog", MKR.Lang.Dialog.ModalYesNo.dialogTitle, dialogBodyWgt, {
 			resizable: false
 		});
 	}
@@ -797,7 +797,7 @@ MKR.Dialog.ModalAlert = MKR.Dialog.ModalBase.extend({
 			self.close();
 		});
 
-		MKR.Dialog.ModalBase.prototype.initialize.call(this, dialogManager, "mkr_alert_dialog", "確認", dialogBodyWgt, {
+		MKR.Dialog.ModalBase.prototype.initialize.call(this, dialogManager, "mkr_alert_dialog", MKR.Lang.Dialog.ModalAlert.dialogTitle, dialogBodyWgt, {
 			resizable: false,
 			minWidth: this.options.minWidth,
 			maxWidth: this.options.maxWidth
